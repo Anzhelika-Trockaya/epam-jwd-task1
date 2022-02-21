@@ -21,7 +21,7 @@ public class CustomArray implements Serializable {
 
     public CustomArray(int... elements) {
         LOGGER.info("creating new CustomArray("+Arrays.toString(elements)+")");
-        this.elements = elements;
+        this.elements = elements.clone();
     }
 
     public int[] getElements() {
@@ -31,7 +31,7 @@ public class CustomArray implements Serializable {
 
     public void setElements(int[] elements) {
         LOGGER.info("setElements("+Arrays.toString(elements)+")");
-        this.elements = elements;
+        this.elements = elements.clone();
     }
 
     public int getElement(int index) {
