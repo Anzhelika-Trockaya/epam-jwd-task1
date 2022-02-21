@@ -14,7 +14,7 @@ public class ArrayChangeServiceImpl implements ArrayChangeService {
 
     @Override
     public void replaceAll(CustomArray array, int value, int replacement) throws ServiceException {
-        LOGGER.info("Replase all elements equals value");
+        LOGGER.info("Replace all elements equals value");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
         int[] elements = array.getElements();
@@ -28,7 +28,7 @@ public class ArrayChangeServiceImpl implements ArrayChangeService {
 
     @Override
     public void replaceAllGreaterThanValue(CustomArray array, int value, int replacement) throws ServiceException {
-        LOGGER.info("Replase all elements greater than value");
+        LOGGER.info("Replace all elements greater than value");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
         int[] elements = array.getElements();
@@ -42,7 +42,7 @@ public class ArrayChangeServiceImpl implements ArrayChangeService {
 
     @Override
     public void replaceAllLessThanValue(CustomArray array, int value, int replacement) throws ServiceException {
-        LOGGER.info("Replase all elements less than value");
+        LOGGER.info("Replace all elements less than value");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
         int[] elements = array.getElements();
@@ -56,7 +56,7 @@ public class ArrayChangeServiceImpl implements ArrayChangeService {
 
     @Override
     public void replaceAllNegative(CustomArray array, int value) throws ServiceException {
-        LOGGER.info("Replase all negative elements");
+        LOGGER.info("Replace all negative elements");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
         int[] elements = array.getElements();
@@ -71,7 +71,7 @@ public class ArrayChangeServiceImpl implements ArrayChangeService {
     @Override
     public void replaceAllInInterval(CustomArray array, int startIndex, int intervalLength, int value)
             throws ServiceException {
-        LOGGER.info("Replase all elements in interval");
+        LOGGER.info("Replace all elements in interval");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
         int[] elements = array.getElements();
