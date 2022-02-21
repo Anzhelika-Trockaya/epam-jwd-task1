@@ -25,11 +25,11 @@ public class Main {
         CustomArray[] array = new CustomArray[10];
         array[0] = new CustomArray(new int[10]);
         array[1] = new CustomArray(new int[0]);
-        array[2] = new CustomArray(new int[] { 0 });
+        array[2] = new CustomArray(0);
         array[3] = new CustomArray(2, 1);
-        array[4] = new CustomArray(new int[] { 0, 5, 0, -9 });
-        array[5] = new CustomArray(new int[] { 7, 5, 0, -9 });
-        array[6] = new CustomArray(new int[] { 7, -12, 5, 0, -9 });
+        array[4] = new CustomArray(0, 5, 0, -9);
+        array[5] = new CustomArray(7, 5, 0, -9);
+        array[6] = new CustomArray(7, -12, 5, 0, -9);
         array[7] = new CustomArray(null);
         array[8] = null;
         array[9] = new CustomArray();
@@ -46,23 +46,22 @@ public class Main {
 
         }
 
-         CustomArrayLineValidator val = new CustomArrayLineValidator();
-         System.out.println(val.isCustomArrayLineCorrect(""));
-         System.out.println(val.isCustomArrayLineCorrect("  14; 4   ;      6"));
-         System.out.println(val.isCustomArrayLineCorrect("14; 4   ;      6  "));
-         System.out.println(val.isCustomArrayLineCorrect("  1; 2; 3  "));
-         System.out.println(val.isCustomArrayLineCorrect("1; 2; 3;"));
-         System.out.println(val.isCustomArrayLineCorrect(";1; 2; 3"));
-         System.out.println(val.isCustomArrayLineCorrect("    "));
-         System.out.println(val.isCustomArrayLineCorrect(" ; "));
-         System.out.println(val.isCustomArrayLineCorrect("  1; - 2; 3  "));
+        CustomArrayLineValidator val = new CustomArrayLineValidator();
+        System.out.println(val.isCustomArrayLineCorrect(""));
+        System.out.println(val.isCustomArrayLineCorrect("  14; 4   ;      6"));
+        System.out.println(val.isCustomArrayLineCorrect("14; 4   ;      6  "));
+        System.out.println(val.isCustomArrayLineCorrect("  1; 2; 3  "));
+        System.out.println(val.isCustomArrayLineCorrect("1; 2; 3;"));
+        System.out.println(val.isCustomArrayLineCorrect(";1; 2; 3"));
+        System.out.println(val.isCustomArrayLineCorrect("    "));
+        System.out.println(val.isCustomArrayLineCorrect(" ; "));
+        System.out.println(val.isCustomArrayLineCorrect("  1; - 2; 3  "));
 
-         CustomArrayParser parser = new CustomArrayParser();
-         System.out.println(parser.parse(""));
-         System.out.println(parser.parse("  14; 4   ;      6"));
-         System.out.println(parser.parse("14; 4   ;      6  "));
-         System.out.println(parser.parse("       -1; 2; 3  ;7"));
-
+        CustomArrayParser parser = new CustomArrayParser();
+        System.out.println(parser.parse(""));
+        System.out.println(parser.parse("  14; 4   ;      6"));
+        System.out.println(parser.parse("14; 4   ;      6  "));
+        System.out.println(parser.parse("       -1; 2; 3  ;7"));
 
 
     }
