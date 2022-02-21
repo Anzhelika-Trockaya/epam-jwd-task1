@@ -10,12 +10,12 @@ public class CustomArrayLineValidator {
     private final String customArrayRegex;
 
     public CustomArrayLineValidator() {
-        LOGGER.info("creating new CustonArrayLineValidator()");
+        LOGGER.info("creating new CustomArrayLineValidator()");
         customArrayRegex = "\\s*-?\\d+(\\s*;\\s*-?\\d+)*\\s*";
     }
 
     public CustomArrayLineValidator(String splitterRegex) throws CustomArrayLineValidatorException {
-        LOGGER.info("creating new CustonArrayLineValidator(" + splitterRegex + ")");
+        LOGGER.info("creating new CustomArrayLineValidator(" + splitterRegex + ")");
         if (splitterRegex.matches("\\s*-") || splitterRegex.matches("[0-9]")) {
             throw new CustomArrayLineValidatorException("Incorrect splitterRegex: '" + splitterRegex + "'");
         }
