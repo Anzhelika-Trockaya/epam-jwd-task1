@@ -16,12 +16,17 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) throws CustomArrayReaderException, IOException, FileNotExistsException, CustomArrayParseException {
-        CustomArrayReader reader = new CustomArrayReader("D:\\introduction-to-java\\epam-jwd-task1\\task1\\src\\main\\resources\\arraysFile.txt");
-        while (reader.hasNext()) {
-            CustomArray arr = reader.readNext();
-            System.out.println(Arrays.toString(arr.getElements()));
+        System.out.println("------ READING FROM FILE ------");
+        try(CustomArrayReader reader = new CustomArrayReader("D:\\introduction-to-java\\epam-jwd-task1\\task1\\src\\main\\resources\\arraysFile.txt");) {
+            while (reader.hasNext()) {
+                CustomArray arr = reader.readNext();
+                System.out.println(Arrays.toString(arr.getElements()));
+            }
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
 
+        System.out.println("------ SORTING ------");
         CustomArray[] array = new CustomArray[10];
         array[0] = new CustomArray(new int[10]);
         array[1] = new CustomArray(new int[0]);
@@ -46,6 +51,7 @@ public class Main {
 
         }
 
+        System.out.println("------ VALIDATING ------");
         CustomArrayLineValidator val = new CustomArrayLineValidator();
         System.out.println(val.isCustomArrayLineCorrect(""));
         System.out.println(val.isCustomArrayLineCorrect("  14; 4   ;      6"));
@@ -57,6 +63,7 @@ public class Main {
         System.out.println(val.isCustomArrayLineCorrect(" ; "));
         System.out.println(val.isCustomArrayLineCorrect("  1; - 2; 3  "));
 
+        System.out.println("------ PARSING ------");
         CustomArrayParser parser = new CustomArrayParser();
         System.out.println(parser.parse(""));
         System.out.println(parser.parse("  14; 4   ;      6"));

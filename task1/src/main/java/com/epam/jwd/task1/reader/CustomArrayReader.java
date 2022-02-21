@@ -16,7 +16,7 @@ import com.epam.jwd.task1.exception.FileNotExistsException;
 import com.epam.jwd.task1.parser.CustomArrayParser;
 import com.epam.jwd.task1.validation.CustomArrayLineValidator;
 
-public class CustomArrayReader {
+public class CustomArrayReader implements AutoCloseable{
     private static final Logger LOGGER = LogManager.getLogger(CustomArrayReader.class.getName());
     private BufferedReader bufferedReader;
     private String nextArrayLine;
@@ -71,6 +71,7 @@ public class CustomArrayReader {
         }
     }
 
+    @Override
     public void close() throws Exception {
         LOGGER.info("close");
         try {
