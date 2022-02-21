@@ -19,11 +19,6 @@ public class CustomArray implements Serializable {
         elements = new int[0];
     }
 
-    public CustomArray(int size) {
-        LOGGER.info("creating new CustomArray("+size+")");
-        elements = new int[size];
-    }
-
     public CustomArray(int... elements) {
         LOGGER.info("creating new CustomArray("+Arrays.toString(elements)+")");
         this.elements = elements;
