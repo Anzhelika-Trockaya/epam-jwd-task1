@@ -1,5 +1,8 @@
 package com.epam.jwd.task1.entity;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.Serializable;
 import java.util.Arrays;
 
@@ -8,33 +11,41 @@ public class CustomArray implements Serializable {
      *
      */
     private static final long serialVersionUID = 8688912179103625132L;
+    private static final Logger LOGGER = LogManager.getLogger(CustomArray.class.getName());
     private int[] elements;
 
     public CustomArray() {
+        LOGGER.info("creating new CustomArray()");
         elements = new int[0];
     }
 
     public CustomArray(int size) {
+        LOGGER.info("creating new CustomArray("+size+")");
         elements = new int[size];
     }
 
     public CustomArray(int... elements) {
+        LOGGER.info("creating new CustomArray("+Arrays.toString(elements)+")");
         this.elements = elements;
     }
 
     public int[] getElements() {
+        LOGGER.info("get elements");
         return elements != null ? elements.clone() : null;
     }
 
     public void setElements(int[] elements) {
+        LOGGER.info("setElements("+Arrays.toString(elements)+")");
         this.elements = elements;
     }
 
     public int getElement(int index) {
+        LOGGER.info("getElement ("+index+")");
         return elements[index];
     }
 
     public void setElement(int index, int value) {
+        LOGGER.info("setElement ("+index+", +"+value+")");
         elements[index] = value;
     }
 
