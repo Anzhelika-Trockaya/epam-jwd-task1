@@ -22,7 +22,7 @@ public class CustomArrayReader {
     private String nextArrayLine;
 
     public CustomArrayReader(String fileName) throws IOException, FileNotExistsException, CustomArrayReaderException {
-        LOGGER.info("creating new CustonArrayReader()");
+        LOGGER.info("creating new CustomArrayReader()");
         if (fileName == null) {
             throw new CustomArrayReaderException("FileName is null");
         }
@@ -45,7 +45,7 @@ public class CustomArrayReader {
     }
 
     public boolean hasNext() throws CustomArrayReaderException {
-        LOGGER.info("has next CustomArratLine");
+        LOGGER.info("has next CustomArrayLine");
         if (nextArrayLine == null) {
             foundNextArrayLine();
         }
