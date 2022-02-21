@@ -39,14 +39,6 @@
             <version>2.15.0</version>
         </dependency>
 
-
-
-        <!-- https://mvnrepository.com/artifact/org.ops4j.pax.logging/pax-logging-api -->
-        <!--<dependency>
-            <groupId>org.ops4j.pax.logging</groupId>
-            <artifactId>pax-logging-api</artifactId>
-            <version>2.1.0</version>
-        </dependency>-->
     </dependencies>
 
 </project>
