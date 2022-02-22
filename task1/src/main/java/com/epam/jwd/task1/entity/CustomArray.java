@@ -11,7 +11,7 @@ public class CustomArray implements Serializable {
      *
      */
     private static final long serialVersionUID = 8688912179103625132L;
-    private static final Logger LOGGER = LogManager.getLogger(CustomArray.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger();
     private int[] elements;
 
     public CustomArray() {
@@ -20,7 +20,7 @@ public class CustomArray implements Serializable {
     }
 
     public CustomArray(int... elements) {
-        LOGGER.info("creating new CustomArray("+Arrays.toString(elements)+")");
+        LOGGER.info("creating new CustomArray(" + Arrays.toString(elements) + ")");
         this.elements = elements.clone();
     }
 
@@ -30,23 +30,15 @@ public class CustomArray implements Serializable {
     }
 
     public void setElements(int[] elements) {
-        LOGGER.info("setElements("+Arrays.toString(elements)+")");
+        LOGGER.info("setElements(" + Arrays.toString(elements) + ")");
         this.elements = elements.clone();
-    }
-
-    public int getElement(int index) {
-        LOGGER.info("getElement ("+index+")");
-        return elements[index];
-    }
-
-    public void setElement(int index, int value) {
-        LOGGER.info("setElement ("+index+", +"+value+")");
-        elements[index] = value;
     }
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + "{" + "elements=" + Arrays.toString(elements) + "}";
+        StringBuilder stringBuilder = new StringBuilder(getClass().getSimpleName());
+        stringBuilder.append("{elements=").append(Arrays.toString(elements)).append("}");
+        return stringBuilder.toString();
     }
 
     @Override
