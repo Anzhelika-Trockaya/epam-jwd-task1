@@ -1,18 +1,17 @@
-package com.epam.jwd.task1.service.impl;
+package com.epam.task1.service.impl;
 
+import com.epam.task1.entity.CustomArray;
+import com.epam.task1.exception.CustomArrayException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.epam.jwd.task1.entity.CustomArray;
-import com.epam.jwd.task1.exception.ServiceException;
-
-import com.epam.jwd.task1.service.ArraySortService;
+import com.epam.task1.service.ArraySortService;
 
 public class ArraySortServiceImpl implements ArraySortService {
     private static final Logger LOGGER = LogManager.getLogger(ArraySortServiceImpl.class.getName());
 
     @Override
-    public void bubbleSort(CustomArray array) throws ServiceException {
+    public void bubbleSort(CustomArray array) throws CustomArrayException {
         LOGGER.info("bubble sort array");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
@@ -34,7 +33,7 @@ public class ArraySortServiceImpl implements ArraySortService {
     }
 
     @Override
-    public void insertionSort(CustomArray array) throws ServiceException {
+    public void insertionSort(CustomArray array) throws CustomArrayException {
         LOGGER.info("insertion sort array");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
@@ -70,7 +69,7 @@ public class ArraySortServiceImpl implements ArraySortService {
     }
 
     @Override
-    public void shellSort(CustomArray array) throws ServiceException {
+    public void shellSort(CustomArray array) throws CustomArrayException {
         LOGGER.info("shell sort array");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
@@ -92,7 +91,7 @@ public class ArraySortServiceImpl implements ArraySortService {
     }
 
     @Override
-    public void selectionSort(CustomArray array) throws ServiceException {
+    public void selectionSort(CustomArray array) throws CustomArrayException {
         LOGGER.info("selection sort array");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);

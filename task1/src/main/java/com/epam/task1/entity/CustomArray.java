@@ -1,4 +1,4 @@
-package com.epam.jwd.task1.entity;
+package com.epam.task1.entity;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,30 +7,30 @@ import java.io.Serializable;
 import java.util.Arrays;
 
 public class CustomArray implements Serializable {
+    private static final Logger LOGGER = LogManager.getLogger();
     /**
      *
      */
     private static final long serialVersionUID = 8688912179103625132L;
-    private static final Logger LOGGER = LogManager.getLogger();
     private int[] elements;
 
     public CustomArray() {
-        LOGGER.info("creating new CustomArray()");
+        LOGGER.debug("creating new CustomArray()");
         elements = new int[0];
     }
 
     public CustomArray(int... elements) {
-        LOGGER.info("creating new CustomArray(" + Arrays.toString(elements) + ")");
+        LOGGER.debug("creating new CustomArray(" + Arrays.toString(elements) + ")");
         this.elements = elements.clone();
     }
 
     public int[] getElements() {
-        LOGGER.info("get elements");
+        LOGGER.debug("get elements");
         return elements != null ? elements.clone() : null;
     }
 
     public void setElements(int[] elements) {
-        LOGGER.info("setElements(" + Arrays.toString(elements) + ")");
+        LOGGER.debug("setElements(" + Arrays.toString(elements) + ")");
         this.elements = elements.clone();
     }
 

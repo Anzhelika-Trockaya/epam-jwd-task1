@@ -1,18 +1,17 @@
-package com.epam.jwd.task1.service.impl;
+package com.epam.task1.service.impl;
 
+import com.epam.task1.entity.CustomArray;
+import com.epam.task1.exception.CustomArrayException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.epam.jwd.task1.entity.CustomArray;
-import com.epam.jwd.task1.exception.ServiceException;
-
-import com.epam.jwd.task1.service.ArrayFoundService;
+import com.epam.task1.service.ArrayFoundService;
 
 public class ArrayFoundServiceImpl implements ArrayFoundService {
     private static final Logger LOGGER = LogManager.getLogger(ArrayFoundServiceImpl.class.getName());
 
     @Override
-    public int foundMax(CustomArray array) throws ServiceException {
+    public int foundMax(CustomArray array) throws CustomArrayException {
         LOGGER.info("found max element");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
@@ -27,7 +26,7 @@ public class ArrayFoundServiceImpl implements ArrayFoundService {
     }
 
     @Override
-    public int foundMin(CustomArray array) throws ServiceException {
+    public int foundMin(CustomArray array) throws CustomArrayException {
         LOGGER.info("found min element");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
@@ -42,7 +41,7 @@ public class ArrayFoundServiceImpl implements ArrayFoundService {
     }
 
     @Override
-    public long foundSumOfElements(CustomArray array) throws ServiceException {
+    public long foundSumOfElements(CustomArray array) throws CustomArrayException {
         LOGGER.info("found sum of elements");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
@@ -55,7 +54,7 @@ public class ArrayFoundServiceImpl implements ArrayFoundService {
     }
 
     @Override
-    public int foundNumberOfPositive(CustomArray array) throws ServiceException {
+    public int foundNumberOfPositive(CustomArray array) throws CustomArrayException {
         LOGGER.info("found number of positive elements");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
@@ -70,7 +69,7 @@ public class ArrayFoundServiceImpl implements ArrayFoundService {
     }
 
     @Override
-    public int foundNumberOfNegative(CustomArray array) throws ServiceException {
+    public int foundNumberOfNegative(CustomArray array) throws CustomArrayException {
         LOGGER.info("found number of negative elements");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);

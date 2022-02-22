@@ -1,19 +1,16 @@
-package com.epam.jwd.task1.service.impl;
+package com.epam.task1.service.impl;
 
+import com.epam.task1.entity.CustomArray;
+import com.epam.task1.exception.CustomArrayException;
+import com.epam.task1.service.ArrayChangeService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.epam.jwd.task1.entity.CustomArray;
-import com.epam.jwd.task1.exception.IncorrectParameterException;
-import com.epam.jwd.task1.exception.ServiceException;
-
-import com.epam.jwd.task1.service.ArrayChangeService;
-
 public class ArrayChangeServiceImpl implements ArrayChangeService {
-    private static final Logger LOGGER = LogManager.getLogger(ArrayChangeServiceImpl.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger();
 
     @Override
-    public void replaceAll(CustomArray array, int value, int replacement) throws ServiceException {
+    public void replaceAll(CustomArray array, int value, int replacement) throws CustomArrayException {
         LOGGER.info("Replace all elements equals value");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
@@ -27,7 +24,7 @@ public class ArrayChangeServiceImpl implements ArrayChangeService {
     }
 
     @Override
-    public void replaceAllGreaterThanValue(CustomArray array, int value, int replacement) throws ServiceException {
+    public void replaceAllGreaterThanValue(CustomArray array, int value, int replacement) throws CustomArrayException {
         LOGGER.info("Replace all elements greater than value");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
@@ -41,7 +38,7 @@ public class ArrayChangeServiceImpl implements ArrayChangeService {
     }
 
     @Override
-    public void replaceAllLessThanValue(CustomArray array, int value, int replacement) throws ServiceException {
+    public void replaceAllLessThanValue(CustomArray array, int value, int replacement) throws CustomArrayException {
         LOGGER.info("Replace all elements less than value");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
@@ -55,7 +52,7 @@ public class ArrayChangeServiceImpl implements ArrayChangeService {
     }
 
     @Override
-    public void replaceAllNegative(CustomArray array, int value) throws ServiceException {
+    public void replaceAllNegative(CustomArray array, int value) throws CustomArrayException {
         LOGGER.info("Replace all negative elements");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
@@ -70,14 +67,16 @@ public class ArrayChangeServiceImpl implements ArrayChangeService {
 
     @Override
     public void replaceAllInInterval(CustomArray array, int startIndex, int intervalLength, int value)
-            throws ServiceException {
+            throws CustomArrayException {
         LOGGER.info("Replace all elements in interval");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
         int[] elements = array.getElements();
         int endIndex = startIndex + intervalLength - 1;
         if (startIndex < 0 || intervalLength < 0 || elements.length < endIndex + 1) {
-            throw new IncorrectParameterException();
+            LOGGER.error("Incorrect method params");
+            throw new CustomArrayException("Incorrect method params: startIndex=" + startIndex +
+                    ", intervalLength=" + intervalLength);
         }
         for (int i = startIndex; i < endIndex; i++) {
             elements[i] = value;

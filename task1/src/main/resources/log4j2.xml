@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration packages="org.apache.logging.log4j.test">
-    <properties>
-        <property name="pattern">[%d{HH:mm:ss}] %-5p (%F:%L) - %m%n</property>
-    </properties>
-    <appenders>
-        <Console name="Console">
-            <PatternLayout pattern="${pattern}"/>
+<Configuration status = "info">
+    <Properties>
+        <property name="LOG_DIR">logs</property>
+        <property name="pattern_file">%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level
+            %logger{5} - %msg%n</property>
+        <property name="pattern_console">%relative %-5level %logger{1} - %msg%n
+        </property>
+    </Properties>
+    <ThresholdFilter level="trace"/>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${pattern_console}"/>
         </Console>
-        <File name="File" fileName="target/logs/task1.log" append="false">
-            <PatternLayout pattern="${pattern}"/>
-        </File>
-    </appenders>
-    <loggers>
-        <root level="all">
-            <appenderRef ref="Console" level="info"/>
-            <appenderRef ref="File" level="info"/>
-        </root>
-    </loggers>
-</configuration>
+        <RollingFile name="FileRolling" fileName="logs/log_roll.txt" append="true"
+                     filePattern = "logs/${date:yyyy-MM-dd}/%d{yyyy-MM-dd_HH-mm}_%i.txt">
+            <PatternLayout pattern="${pattern_file}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="15 KB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level = "trace" >
+            <AppenderRef ref="FileRolling" />
+            <AppenderRef ref="Console" />
+        </Root>
+    </Loggers>
+</Configuration>
