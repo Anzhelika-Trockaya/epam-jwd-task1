@@ -80,7 +80,7 @@ public class ArrayLineReaderImpl implements ArrayLineReader {
         try {
             while (bufferedReader.ready()) {
                 currentLine = bufferedReader.readLine();
-                ArrayLineValidator validator = new ArrayLineValidator();
+                ArrayLineValidator validator = ArrayLineValidator.getInstance();
                 if (validator.isArrayLineCorrect(currentLine)) {
                     return currentLine;
                 }

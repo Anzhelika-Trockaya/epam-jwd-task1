@@ -65,7 +65,7 @@ public class CustomArray implements Serializable {
 
     @Override
     public int hashCode() {
-        return elements.hashCode();
+        return Arrays.hashCode(elements);
     }
 }
 
