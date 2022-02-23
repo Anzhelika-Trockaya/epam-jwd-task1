@@ -43,7 +43,7 @@ public class ArrayParserImpl implements ArrayParser {
     }
 
     private void validate(String line) throws CustomArrayException {
-        ArrayLineValidator validator = new ArrayLineValidator();
+        ArrayLineValidator validator = ArrayLineValidator.getInstance();
         if (!validator.isArrayLineCorrect(line)) {
             LOGGER.error("Incorrect line");
             throw new CustomArrayException("Incorrect line: '" + line + "'");
