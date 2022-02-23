@@ -1,5 +1,11 @@
 package com.epam.task1.reader.impl;
 
+import com.epam.task1.exception.CustomArrayException;
+import com.epam.task1.reader.ArrayLineReader;
+import com.epam.task1.validation.ArrayLineValidator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,11 +14,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.epam.task1.exception.CustomArrayException;
-import com.epam.task1.reader.ArrayLineReader;
-import com.epam.task1.validation.ArrayLineValidator;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class ArrayLineReaderImpl implements ArrayLineReader {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -67,10 +68,10 @@ public class ArrayLineReaderImpl implements ArrayLineReader {
             LOGGER.error("file is not exist");
             throw new CustomArrayException("File with name '" + fileName + "' does not exist");
         }
-       /* if (Files.isReadable(Paths.get(fileName))) {
+        if (!Files.isReadable(Paths.get(fileName))) {
             LOGGER.error("file is not readable");
             throw new CustomArrayException("File with name '" + fileName + "' is not readable");
-        }*/
+        }
     }
 
     private String foundNextArrayLine(BufferedReader bufferedReader) throws CustomArrayException {

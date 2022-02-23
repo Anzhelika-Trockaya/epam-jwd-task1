@@ -11,7 +11,7 @@ public class ArraySortServiceImpl implements ArraySortService {
     private static final Logger LOGGER = LogManager.getLogger(ArraySortServiceImpl.class.getName());
 
     @Override
-    public void bubbleSort(CustomArray array) throws CustomArrayException {
+    public CustomArray bubbleSort(CustomArray array) throws CustomArrayException {
         LOGGER.info("bubble sort array");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
@@ -30,6 +30,7 @@ public class ArraySortServiceImpl implements ArraySortService {
             }
         }
         array.setElements(elements);
+        return array;
     }
 
     @Override
