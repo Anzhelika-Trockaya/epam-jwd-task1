@@ -5,11 +5,9 @@ import com.epam.task1.exception.CustomArrayException;
 
 public interface ArraySortService {
 
-    CustomArray bubbleSort(CustomArray array) throws CustomArrayException;
+    void bubbleSort(CustomArray array) throws CustomArrayException;
 
     void insertionSort(CustomArray array) throws CustomArrayException;
 
     void shellSort(CustomArray array) throws CustomArrayException;
-
-    void selectionSort(CustomArray array) throws CustomArrayException;
 }

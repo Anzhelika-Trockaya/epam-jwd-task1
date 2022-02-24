@@ -21,7 +21,7 @@ public class CustomArray implements Serializable {
 
     public CustomArray(int... elements) {
         LOGGER.debug("creating new CustomArray(" + Arrays.toString(elements) + ")");
-        this.elements = elements.clone();
+        this.elements = elements != null ? elements.clone() : null;
     }
 
     public int[] getElements() {

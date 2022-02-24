@@ -9,7 +9,7 @@ public class ArrayChecker {
     private static final Logger LOGGER = LogManager.getLogger();
 
     public void checkArray(CustomArray array) throws CustomArrayException {
-        LOGGER.info("Check CustomArray");
+        LOGGER.debug("Check CustomArray");
         if (array == null || array.getElements() == null) {
             LOGGER.error("CustomArray is null or field elements is null");
             throw new CustomArrayException("CustomArray is null or field elements is null");

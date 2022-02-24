@@ -11,7 +11,7 @@ public class ArraySortServiceImpl implements ArraySortService {
     private static final Logger LOGGER = LogManager.getLogger(ArraySortServiceImpl.class.getName());
 
     @Override
-    public CustomArray bubbleSort(CustomArray array) throws CustomArrayException {
+    public void bubbleSort(CustomArray array) throws CustomArrayException {
         LOGGER.info("bubble sort array");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
@@ -30,7 +30,6 @@ public class ArraySortServiceImpl implements ArraySortService {
             }
         }
         array.setElements(elements);
-        return array;
     }
 
     @Override
@@ -50,23 +49,6 @@ public class ArraySortServiceImpl implements ArraySortService {
             elements[tempIndex] = currentValue;
         }
         array.setElements(elements);
-    }
-
-    private static int searchInsertIndex(int[] elements, int lastIndex, int valueForInsert) {
-        LOGGER.info("search insert index");
-        int firstIndex = 0;
-        int middleIndex;
-        while (firstIndex <= lastIndex) {
-            middleIndex = (firstIndex + lastIndex) / 2;
-            if (elements[middleIndex] == valueForInsert) {
-                return middleIndex;
-            } else if (elements[middleIndex] < valueForInsert) {
-                firstIndex = middleIndex + 1;
-            } else if (elements[middleIndex] > valueForInsert) {
-                lastIndex = middleIndex - 1;
-            }
-        }
-        return firstIndex;
     }
 
     @Override
@@ -91,27 +73,21 @@ public class ArraySortServiceImpl implements ArraySortService {
         array.setElements(elements);
     }
 
-    @Override
-    public void selectionSort(CustomArray array) throws CustomArrayException {
-        LOGGER.info("selection sort array");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
-        int[] elements = array.getElements();
-        int indexOfMin;
-        int min;
-        for (int i = 0; i < elements.length - 1; i++) {
-            min = elements[i];
-            indexOfMin = i;
-            for (int j = i + 1; j < elements.length; j++) {
-                if (elements[j] < min) {
-                    min = elements[j];
-                    indexOfMin = j;
-                }
+    private static int searchInsertIndex(int[] elements, int lastIndex, int valueForInsert) {
+        LOGGER.info("search insert index");
+        int firstIndex = 0;
+        int middleIndex;
+        while (firstIndex <= lastIndex) {
+            middleIndex = (firstIndex + lastIndex) / 2;
+            if (elements[middleIndex] == valueForInsert) {
+                return middleIndex;
+            } else if (elements[middleIndex] < valueForInsert) {
+                firstIndex = middleIndex + 1;
+            } else if (elements[middleIndex] > valueForInsert) {
+                lastIndex = middleIndex - 1;
             }
-            elements[indexOfMin] = elements[i];
-            elements[i] = min;
         }
-        array.setElements(elements);
+        return firstIndex;
     }
 
 }

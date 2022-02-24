@@ -5,19 +5,22 @@ import org.apache.logging.log4j.Logger;
 
 public class ArrayLineValidator {
     private static final Logger LOGGER = LogManager.getLogger();
-    private static final ArrayLineValidator instance = new ArrayLineValidator();
-    private static final String ARRAY_REGEX = "\\s*-?\\d+(\\s*;\\s*-?\\d+)*\\s*";
+    private static final String ARRAY_LINE_REGEX = "\\s*-?\\d+(\\s*;\\s*-?\\d+)*\\s*";
+    private static ArrayLineValidator instance;
 
-    private ArrayLineValidator(){
+    private ArrayLineValidator() {
     }
 
-    public static ArrayLineValidator getInstance(){
+    public static ArrayLineValidator getInstance() {
+        if (instance == null) {
+            instance = new ArrayLineValidator();
+        }
         return instance;
     }
 
     public boolean isArrayLineCorrect(String line) {
         LOGGER.info("is array line correct");
-        return line != null && (line.isBlank() || line.matches(ARRAY_REGEX));
+        return line != null && (line.isBlank() || line.matches(ARRAY_LINE_REGEX));
     }
 }
 
