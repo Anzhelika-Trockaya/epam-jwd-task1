@@ -11,7 +11,7 @@ import static org.testng.Assert.assertEquals;
 public class ArrayChangeServiceImplTest {
     ArrayChangeServiceImpl changeService = new ArrayChangeServiceImpl();
 
-    @DataProvider(name = "dataForReplaceAll")
+    @DataProvider(name = "data_for_replaceAll")
     public Object[][] createDataForReplaceAll() {
         Object[][] data = new Object[4][4];
         data[0] = new Object[]{
@@ -41,7 +41,7 @@ public class ArrayChangeServiceImplTest {
         return data;
     }
 
-    @DataProvider(name = "dataForReplaceAllGreater")
+    @DataProvider(name = "data_for_replaceAllGreater")
     public Object[][] createDataForReplaceAllGreaterThanValue() {
         Object[][] data = new Object[4][4];
         data[0] = new Object[]{
@@ -71,7 +71,7 @@ public class ArrayChangeServiceImplTest {
         return data;
     }
 
-    @DataProvider(name = "dataForReplaceAllLess")
+    @DataProvider(name = "data_for_replaceAllLess")
     public Object[][] createDataForReplaceAllLessThanValue() {
         Object[][] data = new Object[3][4];
         data[0] = new Object[]{
@@ -95,7 +95,7 @@ public class ArrayChangeServiceImplTest {
         return data;
     }
 
-    @DataProvider(name = "dataForReplaceAllNegative")
+    @DataProvider(name = "data_for_replaceAllNegative")
     public Object[][] createDataForReplaceNegative() {
         Object[][] data = new Object[3][3];
         data[0] = new Object[]{
@@ -116,7 +116,7 @@ public class ArrayChangeServiceImplTest {
         return data;
     }
 
-    @DataProvider(name = "dataForReplaceAllInInterval")
+    @DataProvider(name = "data_for_replaceAllInInterval")
     public Object[][] createDataForReplaceAllInInterval() {
         Object[][] data = new Object[3][5];
         data[0] = new Object[]{
@@ -143,31 +143,31 @@ public class ArrayChangeServiceImplTest {
         return data;
     }
 
-    @Test(dataProvider = "dataForReplaceAll")
+    @Test(dataProvider = "data_for_replaceAll")
     public void testReplaceAll(CustomArray actual, int value, int replacement, CustomArray expected) throws CustomArrayException {
         changeService.replaceAll(actual, value, replacement);
         assertEquals(actual, expected);
     }
 
-    @Test(dataProvider = "dataForReplaceAllGreater")
+    @Test(dataProvider = "data_for_replaceAllGreater")
     public void testReplaceAllGreaterThanValue(CustomArray actual, int value, int replacement, CustomArray expected) throws CustomArrayException {
         changeService.replaceAllGreaterThanValue(actual, value, replacement);
         assertEquals(actual, expected);
     }
 
-    @Test(dataProvider = "dataForReplaceAllLess")
+    @Test(dataProvider = "data_for_replaceAllLess")
     public void testReplaceAllLessThanValue(CustomArray actual, int value, int replacement, CustomArray expected) throws CustomArrayException {
         changeService.replaceAllLessThanValue(actual, value, replacement);
         assertEquals(actual, expected);
     }
 
-    @Test(dataProvider = "dataForReplaceAllNegative")
+    @Test(dataProvider = "data_for_replaceAllNegative")
     public void testReplaceAllNegative(CustomArray actual, int replacement, CustomArray expected) throws CustomArrayException {
         changeService.replaceAllNegative(actual, replacement);
         assertEquals(actual, expected);
     }
 
-    @Test(dataProvider = "dataForReplaceAllInInterval")
+    @Test(dataProvider = "data_for_replaceAllInInterval")
     public void testReplaceAllInInterval(CustomArray actual, int startIndex, int intervalLength, int replacement, CustomArray expected) throws CustomArrayException {
         changeService.replaceAllInInterval(actual, startIndex, intervalLength, replacement);
         assertEquals(actual, expected);

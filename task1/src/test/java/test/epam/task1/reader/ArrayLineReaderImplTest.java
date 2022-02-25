@@ -14,7 +14,7 @@ import static org.testng.Assert.assertEquals;
 public class ArrayLineReaderImplTest {
     ArrayLineReaderImpl arrayLineReader = new ArrayLineReaderImpl();
 
-    @DataProvider(name = "filesData")
+    @DataProvider(name = "files_data")
     public Object[][] createData() {
         List<String> linesFromFileWithOnlyCorrectLines = new ArrayList<>();
         linesFromFileWithOnlyCorrectLines.add("4; 63; 98; 74");
@@ -53,7 +53,7 @@ public class ArrayLineReaderImplTest {
         return data;
     }
 
-    @Test(dataProvider = "filesData")
+    @Test(dataProvider = "files_data")
     public void testReadAllArrayLines(String fileName, List<String> expected) throws CustomArrayException {
         List<String> actual = arrayLineReader.readAllArrayLines(fileName);
         assertEquals(actual, expected);

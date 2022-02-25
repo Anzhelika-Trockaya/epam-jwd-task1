@@ -8,7 +8,6 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-@Test
 public class ArraySortServiceImplTest {
     ArraySortServiceImpl sortService = new ArraySortServiceImpl();
 
