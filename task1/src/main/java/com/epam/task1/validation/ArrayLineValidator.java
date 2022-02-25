@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 public class ArrayLineValidator {
     private static final Logger LOGGER = LogManager.getLogger();
-    private static final String ARRAY_LINE_REGEX = "\\s*-?\\d+(\\s*;\\s*-?\\d+)*\\s*";
+    private static final String ARRAY_LINE_REGEX = "\\s*(-\\s*)?\\d+(\\s*;\\s*(-\\s*)?\\d+)*\\s*";
     private static ArrayLineValidator instance;
 
     private ArrayLineValidator() {

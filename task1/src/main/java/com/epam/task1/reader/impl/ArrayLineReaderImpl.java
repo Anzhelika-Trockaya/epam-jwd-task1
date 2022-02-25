@@ -18,23 +18,6 @@ import java.util.List;
 public class ArrayLineReaderImpl implements ArrayLineReader {
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public String readFirstArrayLine(String fileName) throws CustomArrayException {
-        LOGGER.info("read first array string");
-        checkFile(fileName);
-        String line;
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
-            line = foundNextArrayLine(bufferedReader);
-        } catch (IOException ioException) {
-            LOGGER.error("Exception when use BufferedReader object");
-            throw new CustomArrayException(ioException);
-        }
-        if (line == null) {
-            LOGGER.error("file has no valid lines");
-            throw new CustomArrayException("file has no valid lines");
-        }
-        return line;
-    }
-
     public List<String> readAllArrayLines(String fileName) throws CustomArrayException {
         LOGGER.info("read all array strings");
         checkFile(fileName);
@@ -48,12 +31,8 @@ public class ArrayLineReaderImpl implements ArrayLineReader {
                 }
             }
         } catch (IOException ioException) {
-            LOGGER.error("Exception when use BufferedReader object");
+            LOGGER.error("Exception when use BufferedReader object", ioException);
             throw new CustomArrayException(ioException);
-        }
-        if (lines.isEmpty()) {
-            LOGGER.error("file has no valid lines");
-            throw new CustomArrayException("file has no valid lines");
         }
         return lines;
     }
@@ -86,7 +65,7 @@ public class ArrayLineReaderImpl implements ArrayLineReader {
                 }
             }
         } catch (IOException exception) {
-            LOGGER.error("Exception when use BufferedReader object");
+            LOGGER.error("Exception when use BufferedReader object", exception);
             throw new CustomArrayException(exception);
         }
         return null;

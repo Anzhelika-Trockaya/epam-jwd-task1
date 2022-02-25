@@ -6,7 +6,7 @@ import com.epam.task1.service.impl.ArrayChangeServiceImpl;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 
 public class ArrayChangeServiceImplTest {
     ArrayChangeServiceImpl changeService = new ArrayChangeServiceImpl();

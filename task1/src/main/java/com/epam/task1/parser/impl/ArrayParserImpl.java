@@ -11,14 +11,12 @@ import java.util.List;
 
 public class ArrayParserImpl implements ArrayParser {
     private static final Logger LOGGER = LogManager.getLogger();
-    private static final String SPLITTER_REGEX = "\\s*;\\s*";
+    private static final String SPLITTER_REGEX = ";";
 
     public int[] parse(String line) throws CustomArrayException {
         LOGGER.info("parse line='" + line + "'");
         validate(line);
-        if (line.startsWith(" ") || line.endsWith(" ")) {
-            line = deleteSpacesFromStartAndEnd(line);
-        }
+        line = line.replaceAll("\\s", "");
         int[] arrayElements;
         if (!line.isEmpty()) {
             String[] lineParts = line.split(SPLITTER_REGEX);
@@ -28,6 +26,7 @@ public class ArrayParserImpl implements ArrayParser {
         }
         return arrayElements;
     }
+
 
     @Override
     public List<int[]> parseAll(List<String> lines) throws CustomArrayException {
@@ -58,37 +57,6 @@ public class ArrayParserImpl implements ArrayParser {
         for (String line : lines) {
             validate(line);
         }
-    }
-
-    private String deleteSpacesFromStartAndEnd(String line) {
-        LOGGER.debug("delete spaces from start and end");
-        if (line.isBlank()) {
-            return new String();
-        }
-        int startIndex = foundFirstNotSpaceCharIndex(line);
-        int endIndex = foundLastNotSpaceCharIndex(line) + 1;
-        String newLine = line.substring(startIndex, endIndex);
-        return newLine;
-    }
-
-    private int foundLastNotSpaceCharIndex(String line) {
-        LOGGER.debug("found last not space char index");
-        for (int i = line.length() - 1; i >= 0; i--) {
-            if (line.charAt(i) != ' ') {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    private int foundFirstNotSpaceCharIndex(String line) {
-        LOGGER.debug("found first not space char index");
-        for (int i = 0; i < line.length(); i++) {
-            if (line.charAt(i) != ' ') {
-                return i;
-            }
-        }
-        return -1;
     }
 
     private int[] parseIntArrayFromStringArray(String[] strings) {
