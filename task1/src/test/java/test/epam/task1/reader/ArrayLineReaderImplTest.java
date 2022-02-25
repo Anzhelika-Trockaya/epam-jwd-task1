@@ -14,8 +14,8 @@ import static org.testng.Assert.assertEquals;
 public class ArrayLineReaderImplTest {
     ArrayLineReaderImpl arrayLineReader = new ArrayLineReaderImpl();
 
-    @DataProvider(name="filesData")
-    public Object[][] createData(){
+    @DataProvider(name = "filesData")
+    public Object[][] createData() {
         List<String> linesFromFileWithOnlyCorrectLines = new ArrayList<>();
         linesFromFileWithOnlyCorrectLines.add("4; 63; 98; 74");
         linesFromFileWithOnlyCorrectLines.add("1");
