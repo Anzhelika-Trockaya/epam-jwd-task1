@@ -18,30 +18,32 @@ public class ArrayFoundServiceImplTest {
         Object[][] data = new Object[5][2];
         data[0] = new Object[]{
                 new CustomArray(5, 8, -6, 7, 1025, 1, -5, 5, -7000),
-                1025
+                OptionalInt.of(1025)
         };
         data[1] = new Object[]{
                 new CustomArray(8, 7, 6, 5, 4),
-                8
+                OptionalInt.of(8)
         };
         data[2] = new Object[]{
                 new CustomArray(),
-                null
+                OptionalInt.empty()
         };
         data[3] = new Object[]{
                 new CustomArray(0, 8, 20),
-                20
+                OptionalInt.of(20)
         };
         data[4] = new Object[]{
                 new CustomArray(0, 0, 0),
-                0
+                OptionalInt.of(0)
         };
         return data;
     }
 
     @Test(dataProvider = "data_for_foundMax")
-    public void testFoundMaxElement(CustomArray array, int expected) throws CustomArrayException {
+    public void testFoundMaxElement(CustomArray array, OptionalInt expected) throws CustomArrayException {
         OptionalInt actual = foundService.foundMax(array);
-        assertTrue(expected==actual.getAsInt());//FIXME
+        assertTrue(expected.equals(actual));
     }
+
+
 }
