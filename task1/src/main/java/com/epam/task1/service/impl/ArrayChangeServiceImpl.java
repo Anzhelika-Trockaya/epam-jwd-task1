@@ -52,21 +52,21 @@ public class ArrayChangeServiceImpl implements ArrayChangeService {
     }
 
     @Override
-    public void replaceAllNegative(CustomArray array, int value) throws CustomArrayException {
+    public void replaceAllNegative(CustomArray array, int replacement) throws CustomArrayException {
         LOGGER.info("Replace all negative elements");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
         int[] elements = array.getElements();
         for (int i = 0; i < elements.length; i++) {
             if (elements[i] < 0) {
-                elements[i] = value;
+                elements[i] = replacement;
             }
         }
         array.setElements(elements);
     }
 
     @Override
-    public void replaceAllInInterval(CustomArray array, int startIndex, int intervalLength, int value)
+    public void replaceAllInInterval(CustomArray array, int startIndex, int intervalLength, int replacement)
             throws CustomArrayException {
         LOGGER.info("Replace all elements in interval");
         ArrayChecker checker = new ArrayChecker();
@@ -78,8 +78,8 @@ public class ArrayChangeServiceImpl implements ArrayChangeService {
             throw new CustomArrayException("Incorrect method params: startIndex=" + startIndex +
                     ", intervalLength=" + intervalLength);
         }
-        for (int i = startIndex; i < endIndex; i++) {
-            elements[i] = value;
+        for (int i = startIndex; i <= endIndex; i++) {
+            elements[i] = replacement;
         }
         array.setElements(elements);
     }

@@ -10,8 +10,8 @@ public interface ArrayChangeService {
 
     void replaceAllLessThanValue(CustomArray array, int value, int replacement) throws CustomArrayException;
 
-    void replaceAllNegative(CustomArray array, int value) throws CustomArrayException;
+    void replaceAllNegative(CustomArray array, int replacement) throws CustomArrayException;
 
-    void replaceAllInInterval(CustomArray array, int startIndex, int intervalLength, int value) throws CustomArrayException;
+    void replaceAllInInterval(CustomArray array, int startIndex, int intervalLength, int replacement) throws CustomArrayException;
 }
 
