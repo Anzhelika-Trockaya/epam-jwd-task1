@@ -10,4 +10,6 @@ public interface ArraySortService {
     void insertionSort(CustomArray array) throws CustomArrayException;
 
     void shellSort(CustomArray array) throws CustomArrayException;
+
+    void streamSort(CustomArray array) throws CustomArrayException;
 }

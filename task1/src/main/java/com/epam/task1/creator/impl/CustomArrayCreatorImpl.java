@@ -10,10 +10,11 @@ import java.util.List;
 
 public class CustomArrayCreatorImpl implements CustomArrayCreator {
     private static final Logger LOGGER = LogManager.getLogger();
+
     @Override
     public CustomArray createCustomArray(int[] elements) {
         LOGGER.info("create new CustomArray");
-        return new CustomArray(elements);
+        return elements != null ? new CustomArray(elements) : new CustomArray();
     }
 
     @Override
@@ -29,8 +30,10 @@ public class CustomArrayCreatorImpl implements CustomArrayCreator {
         if (arraysElements == null) {
             return customArrays;
         }
+        CustomArray currentArray;
         for (int[] elements : arraysElements) {
-            customArrays.add(new CustomArray(elements));
+            currentArray = createCustomArray(elements);
+            customArrays.add(currentArray);
         }
         return customArrays;
     }

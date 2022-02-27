@@ -7,6 +7,9 @@ import org.apache.logging.log4j.Logger;
 
 import com.epam.task1.service.ArraySortService;
 
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
 public class ArraySortServiceImpl implements ArraySortService {
     private static final Logger LOGGER = LogManager.getLogger(ArraySortServiceImpl.class.getName());
 
@@ -71,6 +74,17 @@ public class ArraySortServiceImpl implements ArraySortService {
             }
         }
         array.setElements(elements);
+    }
+
+    @Override
+    public void streamSort(CustomArray array) throws CustomArrayException {
+        LOGGER.info("sort array using stream");
+        ArrayChecker checker = new ArrayChecker();
+        checker.checkArray(array);
+        int[] elements = array.getElements();
+        IntStream stream = Arrays.stream(elements);
+        int[] newElements = stream.sorted().toArray();
+        array.setElements(newElements);
     }
 
     private static int searchInsertIndex(int[] elements, int lastIndex, int valueForInsert) {

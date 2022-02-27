@@ -1,13 +1,9 @@
 package com.epam.task1.entity;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.io.Serializable;
 import java.util.Arrays;
 
 public class CustomArray implements Serializable {
-    private static final Logger LOGGER = LogManager.getLogger();
     /**
      *
      */
@@ -15,12 +11,10 @@ public class CustomArray implements Serializable {
     private int[] elements;
 
     public CustomArray() {
-        LOGGER.debug("creating new CustomArray()");
         elements = new int[0];
     }
 
     public CustomArray(int... elements) {
-        LOGGER.debug("creating new CustomArray(" + Arrays.toString(elements) + ")");
         this.elements = elements != null ? elements.clone() : null;
     }
 
@@ -29,7 +23,6 @@ public class CustomArray implements Serializable {
     }
 
     public void setElements(int[] elements) {
-        LOGGER.debug("setElements(" + Arrays.toString(elements) + ")");
         this.elements = elements.clone();
     }
 

@@ -50,9 +50,9 @@ public class ArrayParserImpl implements ArrayParser {
     }
 
     private void validate(List<String> lines) throws CustomArrayException {
-        if (lines == null || lines.isEmpty()) {
-            LOGGER.error("Incorrect line list");
-            throw new CustomArrayException("Line list is null or empty");
+        if (lines == null) {
+            LOGGER.error("Line list is null");
+            throw new CustomArrayException("Line list is null");
         }
         for (String line : lines) {
             validate(line);

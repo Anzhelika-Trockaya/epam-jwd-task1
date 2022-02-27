@@ -7,8 +7,10 @@ import org.apache.logging.log4j.Logger;
 
 import com.epam.task1.service.ArrayFoundService;
 
+import java.util.Arrays;
+import java.util.OptionalDouble;
 import java.util.OptionalInt;
-import java.util.OptionalLong;
+import java.util.stream.IntStream;
 
 public class ArrayFoundServiceImpl implements ArrayFoundService {
     private static final Logger LOGGER = LogManager.getLogger(ArrayFoundServiceImpl.class.getName());
@@ -50,19 +52,44 @@ public class ArrayFoundServiceImpl implements ArrayFoundService {
     }
 
     @Override
-    public OptionalLong foundSumOfElements(CustomArray array) throws CustomArrayException {
+    public int foundSumOfElements(CustomArray array) throws CustomArrayException {
         LOGGER.info("found sum of elements");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
         int[] elements = array.getElements();
         if (elements.length == 0) {
-            return OptionalLong.empty();
+            return 0;
         }
-        long sum = elements[0];
+        int sum = elements[0];
         for (int i = 1; i < elements.length; i++) {
-            sum += elements[i];
+            if (Integer.MAX_VALUE - sum >= Math.abs(elements[i])) {//fixme
+                sum += elements[i];
+            } else {
+                LOGGER.error("sum value is bigger than Integer.MAX_VALUE");
+                throw new CustomArrayException("sum value is bigger than Integer.MAX_VALUE");
+            }
         }
-        return OptionalLong.of(sum);
+        return sum;
+    }
+
+    @Override
+    public OptionalDouble foundAverage(CustomArray array) throws CustomArrayException {
+        LOGGER.info("found average");
+        ArrayChecker checker = new ArrayChecker();
+        checker.checkArray(array);
+        int[] elements = array.getElements();
+        if (elements.length == 0) {
+            return OptionalDouble.empty();
+        }
+        int sumOfElements = foundSumOfElements(array);
+        double average;
+        if (Double.MAX_VALUE >= Math.abs(sumOfElements / elements.length)) {//fixme
+            average = (double) sumOfElements / elements.length;
+        } else {
+            LOGGER.error("Average is bigger than Double.MAX_VALUE");
+            throw new CustomArrayException("Average is bigger than Double.MAX_VALUE");
+        }
+        return OptionalDouble.of(average);
     }
 
     @Override
@@ -93,6 +120,66 @@ public class ArrayFoundServiceImpl implements ArrayFoundService {
             }
         }
         return numberOfNegative;
+    }
+
+    @Override
+    public OptionalInt foundMaxStream(CustomArray array) throws CustomArrayException {
+        LOGGER.info("found max element using stream");
+        ArrayChecker checker = new ArrayChecker();
+        checker.checkArray(array);
+        int[] elements = array.getElements();
+        IntStream stream = Arrays.stream(elements);
+        return stream.max();
+    }
+
+    @Override
+    public OptionalInt foundMinStream(CustomArray array) throws CustomArrayException {
+        LOGGER.info("found min element using stream");
+        ArrayChecker checker = new ArrayChecker();
+        checker.checkArray(array);
+        int[] elements = array.getElements();
+        IntStream stream = Arrays.stream(elements);
+        return stream.min();
+    }
+
+    @Override
+    public int foundSumOfElementsStream(CustomArray array) throws CustomArrayException {
+        LOGGER.info("found sum of elements using stream");
+        ArrayChecker checker = new ArrayChecker();
+        checker.checkArray(array);
+        int[] elements = array.getElements();
+        IntStream stream = Arrays.stream(elements);
+        return stream.sum();
+    }
+
+    @Override
+    public OptionalDouble foundAverageStream(CustomArray array) throws CustomArrayException {
+        LOGGER.info("found average using stream");
+        ArrayChecker checker = new ArrayChecker();
+        checker.checkArray(array);
+        int[] elements = array.getElements();
+        IntStream stream = Arrays.stream(elements);
+        return stream.average();
+    }
+
+    @Override
+    public int foundNumberOfPositiveStream(CustomArray array) throws CustomArrayException {
+        LOGGER.info("found number of positive using stream");
+        ArrayChecker checker = new ArrayChecker();
+        checker.checkArray(array);
+        int[] elements = array.getElements();
+        IntStream stream = Arrays.stream(elements);
+        return (int) stream.filter((x) -> x > 0).count();
+    }
+
+    @Override
+    public int foundNumberOfNegativeStream(CustomArray array) throws CustomArrayException {
+        LOGGER.info("found number of negative using stream");
+        ArrayChecker checker = new ArrayChecker();
+        checker.checkArray(array);
+        int[] elements = array.getElements();
+        IntStream stream = Arrays.stream(elements);
+        return (int) stream.filter((x) -> x < 0).count();
     }
 
 }
