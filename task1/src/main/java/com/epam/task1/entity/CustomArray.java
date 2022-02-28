@@ -1,5 +1,8 @@
 package com.epam.task1.entity;
 
+import com.epam.task1.generator.IdGenerator;
+import com.epam.task1.generator.impl.IdGeneratorImpl;
+
 import java.io.Serializable;
 import java.util.Arrays;
 
@@ -8,13 +11,17 @@ public class CustomArray implements Serializable {
      *
      */
     private static final long serialVersionUID = 8688912179103625132L;
+    private static final IdGenerator ID_GENERATOR = new IdGeneratorImpl();
+    private final long id;
     private int[] elements;
 
     public CustomArray() {
+        id = ID_GENERATOR.generateNextId();
         elements = new int[0];
     }
 
     public CustomArray(int... elements) {
+        id = ID_GENERATOR.generateNextId();
         this.elements = elements != null ? elements.clone() : null;
     }
 
