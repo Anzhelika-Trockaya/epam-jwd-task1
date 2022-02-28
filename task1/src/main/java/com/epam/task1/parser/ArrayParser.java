@@ -8,4 +8,8 @@ public interface ArrayParser {
     int[] parse(String line) throws CustomArrayException;
 
     List<int[]> parseAll(List<String> lines) throws CustomArrayException;
+
+    int[] parseStream(String line) throws CustomArrayException;
+
+    List<int[]> parseAllStream(List<String> lines) throws CustomArrayException;
 }

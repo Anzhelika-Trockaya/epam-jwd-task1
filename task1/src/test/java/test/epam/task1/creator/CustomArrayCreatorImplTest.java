@@ -4,7 +4,7 @@ import com.epam.task1.creator.impl.CustomArrayCreatorImpl;
 import com.epam.task1.entity.CustomArray;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import test.epam.task1.comparator.ListComparator;
+import test.epam.task1.checker.EqualsChecker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +52,18 @@ public class CustomArrayCreatorImplTest {
         return data;
     }
 
+    @DataProvider(name = "stream_create_arrays_data")
+    public Object[][] createDataForStreamCreateListOfArrays() {
+        List<int[]> listOfIntArrays = createListOfIntArrays();
+        List<CustomArray> listOfCustomArrays = createListOfCustomArrays();
+        Object[][] data = new Object[1][2];
+        data[0] = new Object[]{
+                listOfIntArrays,
+                listOfCustomArrays
+        };
+        return data;
+    }
+
     public List<int[]> createListOfIntArrays() {
         List<int[]> listOfArrays = new ArrayList<>();
         listOfArrays.add(new int[]{4, -5, -3, 14, 4});
@@ -86,7 +98,14 @@ public class CustomArrayCreatorImplTest {
     @Test(dataProvider = "create_arrays_data")
     public void testCreateListOfCustomArrays(List<int[]> elementsList, List<CustomArray> expected) {
         List<CustomArray> actual = creator.createCustomArrays(elementsList);
-        ListComparator comparator = new ListComparator();
+        EqualsChecker comparator = new EqualsChecker();
+        assertTrue(comparator.areEqualsListsOfCustomArrays(expected, actual));
+    }
+
+    @Test(dataProvider = "stream_create_arrays_data")
+    public void testCreateListOfCustomArraysStream(List<int[]> elementsList, List<CustomArray> expected) {
+        List<CustomArray> actual = creator.createCustomArraysStream(elementsList);
+        EqualsChecker comparator = new EqualsChecker();
         assertTrue(comparator.areEqualsListsOfCustomArrays(expected, actual));
     }
 }

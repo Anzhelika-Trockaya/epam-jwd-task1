@@ -144,7 +144,8 @@ public class ArrayChangeServiceImpl implements ArrayChangeService {
     }
 
     @Override
-    public void replaceAllInIntervalStream(CustomArray array, int startIndex, int intervalLength, int replacement) throws CustomArrayException {//fixme
+    public void replaceAllInIntervalStream(CustomArray array, int startIndex, int intervalLength, int replacement)
+            throws CustomArrayException {
         LOGGER.info("Replace all elements in interval using stream");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
@@ -159,8 +160,8 @@ public class ArrayChangeServiceImpl implements ArrayChangeService {
             return;
         }
         IntStream stream = Arrays.stream(elements);
-       // int[] newElements = ;
-        //array.setElements(newElements);
+        //int[] newElements = stream.;
+        //array.setElements(newElements);//fixme: replace in interval stream
     }
 }
 

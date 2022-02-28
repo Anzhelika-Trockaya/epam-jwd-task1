@@ -13,11 +13,14 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class ArrayLineReaderImpl implements ArrayLineReader {
     private static final Logger LOGGER = LogManager.getLogger();
 
+    @Override
     public List<String> readAllArrayLines(String fileName) throws CustomArrayException {
         LOGGER.info("read all array strings");
         checkFile(fileName);
@@ -25,7 +28,7 @@ public class ArrayLineReaderImpl implements ArrayLineReader {
         String currentLine;
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             while (bufferedReader.ready()) {
-                currentLine = foundNextArrayLine(bufferedReader);
+                currentLine = findNextArrayLine(bufferedReader);
                 if (currentLine != null) {
                     lines.add(currentLine);
                 }
@@ -35,6 +38,21 @@ public class ArrayLineReaderImpl implements ArrayLineReader {
             throw new CustomArrayException(ioException);
         }
         return lines;
+    }
+
+    @Override
+    public List<String> readAllArrayLinesStream(String fileName) throws CustomArrayException {
+        LOGGER.info("read all array strings using stream");
+        checkFile(fileName);
+        Stream<String> stream;
+        try {
+            stream = Files.lines(Paths.get(fileName));
+        } catch (IOException ioException) {
+            LOGGER.error("Exception when read from file", ioException);
+            throw new CustomArrayException(ioException);
+        }
+        ArrayLineValidator validator = ArrayLineValidator.getInstance();
+        return stream.filter(validator::isArrayLineCorrect).collect(Collectors.toList());
     }
 
     private void checkFile(String fileName) throws CustomArrayException {
@@ -53,8 +71,8 @@ public class ArrayLineReaderImpl implements ArrayLineReader {
         }
     }
 
-    private String foundNextArrayLine(BufferedReader bufferedReader) throws CustomArrayException {
-        LOGGER.info("found next array line");
+    private String findNextArrayLine(BufferedReader bufferedReader) throws CustomArrayException {
+        LOGGER.info("find next array line");
         String currentLine;
         try {
             while (bufferedReader.ready()) {

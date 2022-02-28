@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ArrayLineReader {
     List<String> readAllArrayLines(String fileName) throws CustomArrayException;
+
+    List<String> readAllArrayLinesStream(String fileName) throws CustomArrayException;
 }

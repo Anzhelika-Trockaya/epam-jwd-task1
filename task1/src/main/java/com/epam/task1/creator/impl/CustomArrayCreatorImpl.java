@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CustomArrayCreatorImpl implements CustomArrayCreator {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -37,4 +38,13 @@ public class CustomArrayCreatorImpl implements CustomArrayCreator {
         }
         return customArrays;
     }
+
+    @Override
+    public List<CustomArray> createCustomArraysStream(List<int[]> arraysElements) {
+        LOGGER.info("create new CustomArray using stream");
+        return arraysElements.stream()
+                .map(this::createCustomArray)
+                .collect(Collectors.toList());
+    }
+
 }

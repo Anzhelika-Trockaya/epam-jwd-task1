@@ -1,11 +1,11 @@
-package test.epam.task1.comparator;
+package test.epam.task1.checker;
 
 import com.epam.task1.entity.CustomArray;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class ListComparator {
+public class EqualsChecker {
     public boolean areEqualsListsOfArrays(List<int[]> list1, List<int[]> list2) {
         if ((list1 == null && list2 != null) || (list2 == null && list1 != null) || (list1.size() != list2.size())) {
             return false;

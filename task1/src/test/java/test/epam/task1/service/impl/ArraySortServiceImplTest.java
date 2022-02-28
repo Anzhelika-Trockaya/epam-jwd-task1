@@ -58,6 +58,13 @@ public class ArraySortServiceImplTest {
         assertEquals(actualClone, expected);
     }
 
+    @Test(dataProvider = "arrays_data")
+    public void testStreamSort(CustomArray actual, CustomArray expected) throws CustomArrayException {
+        CustomArray actualClone = new CustomArray(actual.getElements());
+        sortService.streamSort(actualClone);
+        assertEquals(actualClone, expected);
+    }
+
     @Test(expectedExceptions = CustomArrayException.class)
     public void testBubbleSortException() throws CustomArrayException {
         sortService.bubbleSort(new CustomArray(null));
@@ -86,5 +93,15 @@ public class ArraySortServiceImplTest {
     @Test(expectedExceptions = CustomArrayException.class)
     public void testShellSortNull() throws CustomArrayException {
         sortService.shellSort(null);
+    }
+
+    @Test(expectedExceptions = CustomArrayException.class)
+    public void testStreamSortException() throws CustomArrayException {
+        sortService.streamSort(new CustomArray(null));
+    }
+
+    @Test(expectedExceptions = CustomArrayException.class)
+    public void testStreamSortNull() throws CustomArrayException {
+        sortService.streamSort(null);
     }
 }

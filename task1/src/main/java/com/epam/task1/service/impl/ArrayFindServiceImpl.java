@@ -2,22 +2,21 @@ package com.epam.task1.service.impl;
 
 import com.epam.task1.entity.CustomArray;
 import com.epam.task1.exception.CustomArrayException;
+import com.epam.task1.service.ArrayFindService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import com.epam.task1.service.ArrayFoundService;
 
 import java.util.Arrays;
 import java.util.OptionalDouble;
 import java.util.OptionalInt;
 import java.util.stream.IntStream;
 
-public class ArrayFoundServiceImpl implements ArrayFoundService {
-    private static final Logger LOGGER = LogManager.getLogger(ArrayFoundServiceImpl.class.getName());
+public class ArrayFindServiceImpl implements ArrayFindService {
+    private static final Logger LOGGER = LogManager.getLogger(ArrayFindServiceImpl.class.getName());
 
     @Override
-    public OptionalInt foundMax(CustomArray array) throws CustomArrayException {
-        LOGGER.info("found max element");
+    public OptionalInt findMax(CustomArray array) throws CustomArrayException {
+        LOGGER.info("find max element");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
         int[] elements = array.getElements();
@@ -34,8 +33,8 @@ public class ArrayFoundServiceImpl implements ArrayFoundService {
     }
 
     @Override
-    public OptionalInt foundMin(CustomArray array) throws CustomArrayException {
-        LOGGER.info("found min element");
+    public OptionalInt findMin(CustomArray array) throws CustomArrayException {
+        LOGGER.info("find min element");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
         int[] elements = array.getElements();
@@ -52,8 +51,8 @@ public class ArrayFoundServiceImpl implements ArrayFoundService {
     }
 
     @Override
-    public int foundSumOfElements(CustomArray array) throws CustomArrayException {
-        LOGGER.info("found sum of elements");
+    public int findSum(CustomArray array) throws CustomArrayException {
+        LOGGER.info("find sum of elements");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
         int[] elements = array.getElements();
@@ -62,7 +61,7 @@ public class ArrayFoundServiceImpl implements ArrayFoundService {
         }
         int sum = elements[0];
         for (int i = 1; i < elements.length; i++) {
-            if (Integer.MAX_VALUE - sum >= Math.abs(elements[i])) {//fixme
+            if (Integer.MAX_VALUE - sum >= Math.abs(elements[i])) {//todo: do I need check overflow?
                 sum += elements[i];
             } else {
                 LOGGER.error("sum value is bigger than Integer.MAX_VALUE");
@@ -73,28 +72,22 @@ public class ArrayFoundServiceImpl implements ArrayFoundService {
     }
 
     @Override
-    public OptionalDouble foundAverage(CustomArray array) throws CustomArrayException {
-        LOGGER.info("found average");
+    public OptionalDouble findAverage(CustomArray array) throws CustomArrayException {
+        LOGGER.info("find average");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
         int[] elements = array.getElements();
         if (elements.length == 0) {
             return OptionalDouble.empty();
         }
-        int sumOfElements = foundSumOfElements(array);
-        double average;
-        if (Double.MAX_VALUE >= Math.abs(sumOfElements / elements.length)) {//fixme
-            average = (double) sumOfElements / elements.length;
-        } else {
-            LOGGER.error("Average is bigger than Double.MAX_VALUE");
-            throw new CustomArrayException("Average is bigger than Double.MAX_VALUE");
-        }
+        int sumOfElements = findSum(array);
+        double average = (double) sumOfElements / elements.length;
         return OptionalDouble.of(average);
     }
 
     @Override
-    public int foundNumberOfPositive(CustomArray array) throws CustomArrayException {
-        LOGGER.info("found number of positive elements");
+    public int findNumberOfPositive(CustomArray array) throws CustomArrayException {
+        LOGGER.info("find number of positive elements");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
         int[] elements = array.getElements();
@@ -108,8 +101,8 @@ public class ArrayFoundServiceImpl implements ArrayFoundService {
     }
 
     @Override
-    public int foundNumberOfNegative(CustomArray array) throws CustomArrayException {
-        LOGGER.info("found number of negative elements");
+    public int findNumberOfNegative(CustomArray array) throws CustomArrayException {
+        LOGGER.info("find number of negative elements");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
         int[] elements = array.getElements();
@@ -123,8 +116,8 @@ public class ArrayFoundServiceImpl implements ArrayFoundService {
     }
 
     @Override
-    public OptionalInt foundMaxStream(CustomArray array) throws CustomArrayException {
-        LOGGER.info("found max element using stream");
+    public OptionalInt findMaxStream(CustomArray array) throws CustomArrayException {
+        LOGGER.info("find max element using stream");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
         int[] elements = array.getElements();
@@ -133,8 +126,8 @@ public class ArrayFoundServiceImpl implements ArrayFoundService {
     }
 
     @Override
-    public OptionalInt foundMinStream(CustomArray array) throws CustomArrayException {
-        LOGGER.info("found min element using stream");
+    public OptionalInt findMinStream(CustomArray array) throws CustomArrayException {
+        LOGGER.info("find min element using stream");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
         int[] elements = array.getElements();
@@ -143,8 +136,8 @@ public class ArrayFoundServiceImpl implements ArrayFoundService {
     }
 
     @Override
-    public int foundSumOfElementsStream(CustomArray array) throws CustomArrayException {
-        LOGGER.info("found sum of elements using stream");
+    public int findSumStream(CustomArray array) throws CustomArrayException {
+        LOGGER.info("find sum of elements using stream");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
         int[] elements = array.getElements();
@@ -153,8 +146,8 @@ public class ArrayFoundServiceImpl implements ArrayFoundService {
     }
 
     @Override
-    public OptionalDouble foundAverageStream(CustomArray array) throws CustomArrayException {
-        LOGGER.info("found average using stream");
+    public OptionalDouble findAverageStream(CustomArray array) throws CustomArrayException {
+        LOGGER.info("find average using stream");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
         int[] elements = array.getElements();
@@ -163,8 +156,8 @@ public class ArrayFoundServiceImpl implements ArrayFoundService {
     }
 
     @Override
-    public int foundNumberOfPositiveStream(CustomArray array) throws CustomArrayException {
-        LOGGER.info("found number of positive using stream");
+    public int findNumberOfPositiveStream(CustomArray array) throws CustomArrayException {
+        LOGGER.info("find number of positive using stream");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
         int[] elements = array.getElements();
@@ -173,8 +166,8 @@ public class ArrayFoundServiceImpl implements ArrayFoundService {
     }
 
     @Override
-    public int foundNumberOfNegativeStream(CustomArray array) throws CustomArrayException {
-        LOGGER.info("found number of negative using stream");
+    public int findNumberOfNegativeStream(CustomArray array) throws CustomArrayException {
+        LOGGER.info("find number of negative using stream");
         ArrayChecker checker = new ArrayChecker();
         checker.checkArray(array);
         int[] elements = array.getElements();
