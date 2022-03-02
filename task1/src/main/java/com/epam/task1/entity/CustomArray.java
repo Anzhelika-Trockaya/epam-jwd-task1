@@ -1,28 +1,27 @@
 package com.epam.task1.entity;
 
-import com.epam.task1.generator.IdGenerator;
-import com.epam.task1.generator.impl.IdGeneratorImpl;
+import com.epam.task1.util.IdGeneratorUtil;
 
 import java.io.Serializable;
 import java.util.Arrays;
 
-public class CustomArray implements Serializable {
-    /**
-     *
-     */
+public class CustomArray extends CustomArrayObservableImpl implements Serializable, Cloneable {
     private static final long serialVersionUID = 8688912179103625132L;
-    private static final IdGenerator ID_GENERATOR = new IdGeneratorImpl();
-    private final long id;
+    private final int id;
     private int[] elements;
 
     public CustomArray() {
-        id = ID_GENERATOR.generateNextId();
+        id = IdGeneratorUtil.generate();
         elements = new int[0];
     }
 
     public CustomArray(int... elements) {
-        id = ID_GENERATOR.generateNextId();
+        id = IdGeneratorUtil.generate();
         this.elements = elements != null ? elements.clone() : null;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public int[] getElements() {
@@ -31,12 +30,17 @@ public class CustomArray implements Serializable {
 
     public void setElements(int[] elements) {
         this.elements = elements.clone();
+        super.notifyObserver();
+    }
+
+    public int length(){
+        return elements.length;
     }
 
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder(getClass().getSimpleName());
-        stringBuilder.append("{elements=").append(Arrays.toString(elements)).append("}");
+        stringBuilder.append("{elements='").append(Arrays.toString(elements)).append("'}");
         return stringBuilder.toString();
     }
 
@@ -66,6 +70,13 @@ public class CustomArray implements Serializable {
     @Override
     public int hashCode() {
         return Arrays.hashCode(elements);
+    }
+
+    @Override
+    public CustomArray clone(){
+        CustomArray clone = this;
+        clone.setElements(this.elements);
+        return clone;
     }
 }
 

@@ -1,65 +1,28 @@
 package com.epam.task1.repository;
 
 import com.epam.task1.entity.CustomArray;
-import com.epam.task1.specification.Specification;
+import com.epam.task1.repository.specification.Specification;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class Repository {
-    private static Repository instance;
-    private List<CustomArray> customArrays;
+public interface Repository {
+    boolean add(CustomArray customArray);
 
-    private Repository() {
-        customArrays = new ArrayList<>();
-    }
+    boolean addAll(Collection<CustomArray> collection);
 
-    public static Repository getInstance(){
-        if(instance==null){
-            instance=new Repository();
-        }
-        return instance;
-    }
+    boolean remove(CustomArray customArray);
 
-    public Repository(List<CustomArray> customArrays) {
-        this.customArrays = customArrays;
-    }
+    boolean removeAll(Collection<CustomArray> collection);
 
-    public boolean add(CustomArray customArray) {
-        return customArrays.add(customArray);
-    }
+    CustomArray get(int index);
 
-    public boolean addAll(Collection<CustomArray> collection) {
-        return customArrays.addAll(collection);
-    }
+    CustomArray set(int index, CustomArray customArray);
 
-    public boolean remove(CustomArray customArray) {
-        return customArrays.remove(customArray);
-    }
+    List<CustomArray> getAll();
 
-    public boolean removeAll(Collection<CustomArray> collection) {
-        return customArrays.removeAll(collection);
-    }
+    List<CustomArray> query(Specification specification);
 
-    public CustomArray get(int index) {
-        return customArrays.get(index);
-    }
-
-    public CustomArray set(int index, CustomArray customArray) {
-        return customArrays.set(index, customArray);
-    }
-
-    public List<CustomArray> getAll() {
-        return customArrays;
-    }
-
-    public List<CustomArray> query(Specification specification) {
-        List<CustomArray> list = customArrays.stream()
-                .filter(specification::specify)
-                .collect(Collectors.toList());
-        return list;
-    }
-
+    List<CustomArray> sort(Comparator<CustomArray> comparator);
 }

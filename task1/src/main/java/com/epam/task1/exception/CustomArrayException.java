@@ -1,9 +1,6 @@
 package com.epam.task1.exception;
 
 public class CustomArrayException extends Exception {
-    /**
-     *
-     */
     private static final long serialVersionUID = -4402803431514480305L;
 
     public CustomArrayException() {

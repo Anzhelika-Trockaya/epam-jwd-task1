@@ -12,8 +12,6 @@ public interface ArrayChangeService {
 
     void replaceAllNegative(CustomArray array, int replacement) throws CustomArrayException;
 
-    void replaceAllInInterval(CustomArray array, int startIndex, int intervalLength, int replacement) throws CustomArrayException;
-
     void replaceAllStream(CustomArray array, int value, int replacement) throws CustomArrayException;
 
     void replaceAllGreaterThanValueStream(CustomArray array, int value, int replacement) throws CustomArrayException;
@@ -21,7 +19,5 @@ public interface ArrayChangeService {
     void replaceAllLessThanValueStream(CustomArray array, int value, int replacement) throws CustomArrayException;
 
     void replaceAllNegativeStream(CustomArray array, int replacement) throws CustomArrayException;
-
-    void replaceAllInIntervalStream(CustomArray array, int startIndex, int intervalLength, int replacement) throws CustomArrayException;
 }
 

@@ -17,8 +17,9 @@ public class ArrayFindServiceImpl implements ArrayFindService {
     @Override
     public OptionalInt findMax(CustomArray array) throws CustomArrayException {
         LOGGER.info("find max element");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
+        if (array == null || array.getElements() == null) {
+            throw new CustomArrayException("CustomArray is null or field elements is null");
+        }
         int[] elements = array.getElements();
         if (elements.length == 0) {
             return OptionalInt.empty();
@@ -35,8 +36,9 @@ public class ArrayFindServiceImpl implements ArrayFindService {
     @Override
     public OptionalInt findMin(CustomArray array) throws CustomArrayException {
         LOGGER.info("find min element");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
+        if (array == null || array.getElements() == null) {
+            throw new CustomArrayException("CustomArray is null or field elements is null");
+        }
         int[] elements = array.getElements();
         if (elements.length == 0) {
             return OptionalInt.empty();
@@ -53,15 +55,16 @@ public class ArrayFindServiceImpl implements ArrayFindService {
     @Override
     public int findSum(CustomArray array) throws CustomArrayException {
         LOGGER.info("find sum of elements");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
+        if (array == null || array.getElements() == null) {
+            throw new CustomArrayException("CustomArray is null or field elements is null");
+        }
         int[] elements = array.getElements();
         if (elements.length == 0) {
             return 0;
         }
         int sum = elements[0];
         for (int i = 1; i < elements.length; i++) {
-            if (Integer.MAX_VALUE - sum >= Math.abs(elements[i])) {//todo: do I need check overflow?
+            if (Integer.MAX_VALUE - sum >= Math.abs(elements[i])) {
                 sum += elements[i];
             } else {
                 LOGGER.error("sum value is bigger than Integer.MAX_VALUE");
@@ -74,8 +77,9 @@ public class ArrayFindServiceImpl implements ArrayFindService {
     @Override
     public OptionalDouble findAverage(CustomArray array) throws CustomArrayException {
         LOGGER.info("find average");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
+        if (array == null || array.getElements() == null) {
+            throw new CustomArrayException("CustomArray is null or field elements is null");
+        }
         int[] elements = array.getElements();
         if (elements.length == 0) {
             return OptionalDouble.empty();
@@ -88,8 +92,9 @@ public class ArrayFindServiceImpl implements ArrayFindService {
     @Override
     public int findNumberOfPositive(CustomArray array) throws CustomArrayException {
         LOGGER.info("find number of positive elements");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
+        if (array == null || array.getElements() == null) {
+            throw new CustomArrayException("CustomArray is null or field elements is null");
+        }
         int[] elements = array.getElements();
         int numberOfPositive = 0;
         for (int element : elements) {
@@ -103,8 +108,9 @@ public class ArrayFindServiceImpl implements ArrayFindService {
     @Override
     public int findNumberOfNegative(CustomArray array) throws CustomArrayException {
         LOGGER.info("find number of negative elements");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
+        if (array == null || array.getElements() == null) {
+            throw new CustomArrayException("CustomArray is null or field elements is null");
+        }
         int[] elements = array.getElements();
         int numberOfNegative = 0;
         for (int element : elements) {
@@ -118,8 +124,9 @@ public class ArrayFindServiceImpl implements ArrayFindService {
     @Override
     public OptionalInt findMaxStream(CustomArray array) throws CustomArrayException {
         LOGGER.info("find max element using stream");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
+        if (array == null || array.getElements() == null) {
+            throw new CustomArrayException("CustomArray is null or field elements is null");
+        }
         int[] elements = array.getElements();
         IntStream stream = Arrays.stream(elements);
         return stream.max();
@@ -128,8 +135,9 @@ public class ArrayFindServiceImpl implements ArrayFindService {
     @Override
     public OptionalInt findMinStream(CustomArray array) throws CustomArrayException {
         LOGGER.info("find min element using stream");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
+        if (array == null || array.getElements() == null) {
+            throw new CustomArrayException("CustomArray is null or field elements is null");
+        }
         int[] elements = array.getElements();
         IntStream stream = Arrays.stream(elements);
         return stream.min();
@@ -138,8 +146,9 @@ public class ArrayFindServiceImpl implements ArrayFindService {
     @Override
     public int findSumStream(CustomArray array) throws CustomArrayException {
         LOGGER.info("find sum of elements using stream");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
+        if (array == null || array.getElements() == null) {
+            throw new CustomArrayException("CustomArray is null or field elements is null");
+        }
         int[] elements = array.getElements();
         IntStream stream = Arrays.stream(elements);
         return stream.sum();
@@ -148,8 +157,9 @@ public class ArrayFindServiceImpl implements ArrayFindService {
     @Override
     public OptionalDouble findAverageStream(CustomArray array) throws CustomArrayException {
         LOGGER.info("find average using stream");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
+        if (array == null || array.getElements() == null) {
+            throw new CustomArrayException("CustomArray is null or field elements is null");
+        }
         int[] elements = array.getElements();
         IntStream stream = Arrays.stream(elements);
         return stream.average();
@@ -158,8 +168,9 @@ public class ArrayFindServiceImpl implements ArrayFindService {
     @Override
     public int findNumberOfPositiveStream(CustomArray array) throws CustomArrayException {
         LOGGER.info("find number of positive using stream");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
+        if (array == null || array.getElements() == null) {
+            throw new CustomArrayException("CustomArray is null or field elements is null");
+        }
         int[] elements = array.getElements();
         IntStream stream = Arrays.stream(elements);
         return (int) stream.filter((x) -> x > 0).count();
@@ -168,8 +179,9 @@ public class ArrayFindServiceImpl implements ArrayFindService {
     @Override
     public int findNumberOfNegativeStream(CustomArray array) throws CustomArrayException {
         LOGGER.info("find number of negative using stream");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
+        if (array == null || array.getElements() == null) {
+            throw new CustomArrayException("CustomArray is null or field elements is null");
+        }
         int[] elements = array.getElements();
         IntStream stream = Arrays.stream(elements);
         return (int) stream.filter((x) -> x < 0).count();

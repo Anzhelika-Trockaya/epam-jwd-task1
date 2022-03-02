@@ -1,6 +1,5 @@
 package test.epam.task1.parser;
 
-import com.epam.task1.exception.CustomArrayException;
 import com.epam.task1.parser.impl.ArrayParserImpl;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -14,8 +13,8 @@ import static org.testng.Assert.*;
 public class ArrayParserImplTest {
     ArrayParserImpl parser = new ArrayParserImpl();
 
-    @DataProvider(name = "correct_parse_data")
-    public Object[][] createCorrectParseData() {
+    @DataProvider(name = "parse_data")
+    public Object[][] createParseData() {
         Object[][] data = new Object[6][2];
         data[0] = new Object[]{
                 "4; -5; -3; 14; 4",
@@ -40,30 +39,6 @@ public class ArrayParserImplTest {
         data[5] = new Object[]{
                 "      ",
                 new int[0]
-        };
-        return data;
-    }
-
-    @DataProvider(name = "incorrect_parse_data")
-    public Object[][] createIncorrectParseData() {
-        Object[][] data = new Object[6][1];
-        data[0] = new Object[]{
-                "4; -5; -3; 1o4; 4"
-        };
-        data[1] = new Object[]{
-                "14 -100 0"
-        };
-        data[2] = new Object[]{
-                "-- 78"
-        };
-        data[3] = new Object[]{
-                "+44"
-        };
-        data[4] = new Object[]{
-                "8-"
-        };
-        data[5] = new Object[]{
-                ",      "
         };
         return data;
     }
@@ -82,8 +57,8 @@ public class ArrayParserImplTest {
         return data;
     }
 
-    @DataProvider(name = "correct_parse_data_for_stream")
-    public Object[][] createCorrectParseDataForStream() {
+    @DataProvider(name = "parse_data_for_stream")
+    public Object[][] createParseDataForStream() {
         Object[][] data = new Object[6][2];
         data[0] = new Object[]{
                 "4; -5; -3; 14; 4",
@@ -108,30 +83,6 @@ public class ArrayParserImplTest {
         data[5] = new Object[]{
                 "      ",
                 new int[0]
-        };
-        return data;
-    }
-
-    @DataProvider(name = "incorrect_parse_data_for_stream")
-    public Object[][] createIncorrectParseDataForStream() {
-        Object[][] data = new Object[6][1];
-        data[0] = new Object[]{
-                "4; -5; -3; 1o4; 4"
-        };
-        data[1] = new Object[]{
-                "14 -100 0"
-        };
-        data[2] = new Object[]{
-                "-- 78"
-        };
-        data[3] = new Object[]{
-                "+44"
-        };
-        data[4] = new Object[]{
-                "8-"
-        };
-        data[5] = new Object[]{
-                ",      "
         };
         return data;
     }
@@ -172,78 +123,30 @@ public class ArrayParserImplTest {
         return arrays;
     }
 
-    public List<String> createLineListWithIncorrectData() {
-        List<String> lines = new ArrayList<>();
-        lines.add("4; -5; -3; 14; 4");
-        lines.add("   14 ; -  ; 0    ");
-        lines.add("- 78");
-        return lines;
-    }
-
-    @Test(dataProvider = "correct_parse_data")
-    public void testParse(String line, int[] expected) throws CustomArrayException {
+    @Test(dataProvider = "parse_data")
+    public void testParse(String line, int[] expected) {
         int[] actual = parser.parse(line);
         assertEquals(expected, actual);
     }
 
-    @Test(dataProvider = "incorrect_parse_data", expectedExceptions = CustomArrayException.class)
-    public void testParseIncorrectLine(String line) throws CustomArrayException {
-        parser.parse(line);
-    }
-
     @Test(dataProvider = "parseAll_data")
-    public void testParseAll(List<String> lines, List<int[]> expected) throws CustomArrayException {
+    public void testParseAll(List<String> lines, List<int[]> expected) {
         List<int[]> actual = parser.parseAll(lines);
         EqualsChecker comparator = new EqualsChecker();
         assertTrue(comparator.areEqualsListsOfArrays(expected, actual));
     }
 
-    @Test(expectedExceptions = CustomArrayException.class)
-    public void testParseAllListWithIncorrectLine() throws CustomArrayException {
-        parser.parseAll(createLineListWithIncorrectData());
-    }
-
-    @Test(expectedExceptions = CustomArrayException.class)
-    public void testParseNull() throws CustomArrayException {
-        parser.parse(null);
-    }
-
-    @Test(expectedExceptions = CustomArrayException.class)
-    public void testParseAllNull() throws CustomArrayException {
-        parser.parseAll(null);
-    }
-
-    @Test(dataProvider = "correct_parse_data_for_stream")
-    public void testParseStream(String line, int[] expected) throws CustomArrayException {
+    @Test(dataProvider = "parse_data_for_stream")
+    public void testParseStream(String line, int[] expected) {
         int[] actual = parser.parseStream(line);
         assertEquals(expected, actual);
     }
 
-    @Test(dataProvider = "incorrect_parse_data_for_stream", expectedExceptions = CustomArrayException.class)
-    public void testParseIncorrectLineStream(String line) throws CustomArrayException {
-        parser.parseStream(line);
-    }
-
     @Test(dataProvider = "parseAllStream_data")
-    public void testParseAllStream(List<String> lines, List<int[]> expected) throws CustomArrayException {
+    public void testParseAllStream(List<String> lines, List<int[]> expected) {
         List<int[]> actual = parser.parseAllStream(lines);
         EqualsChecker comparator = new EqualsChecker();
         assertTrue(comparator.areEqualsListsOfArrays(expected, actual));
-    }
-
-    @Test(expectedExceptions = CustomArrayException.class)
-    public void testParseAllListWithIncorrectLineStream() throws CustomArrayException {
-        parser.parseAllStream(createLineListWithIncorrectData());
-    }
-
-    @Test(expectedExceptions = CustomArrayException.class)
-    public void testParseStreamNull() throws CustomArrayException {
-        parser.parseStream(null);
-    }
-
-    @Test(expectedExceptions = CustomArrayException.class)
-    public void testParseAllStreamNull() throws CustomArrayException {
-        parser.parseAllStream(null);
     }
 
 }

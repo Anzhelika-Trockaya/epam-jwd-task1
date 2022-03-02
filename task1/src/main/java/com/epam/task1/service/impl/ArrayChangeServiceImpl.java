@@ -15,8 +15,9 @@ public class ArrayChangeServiceImpl implements ArrayChangeService {
     @Override
     public void replaceAll(CustomArray array, int value, int replacement) throws CustomArrayException {
         LOGGER.info("Replace all elements equals value");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
+        if (array == null || array.getElements() == null) {
+            throw new CustomArrayException("CustomArray is null or field elements is null");
+        }
         int[] elements = array.getElements();
         for (int i = 0; i < elements.length; i++) {
             if (elements[i] == value) {
@@ -29,8 +30,9 @@ public class ArrayChangeServiceImpl implements ArrayChangeService {
     @Override
     public void replaceAllGreaterThanValue(CustomArray array, int value, int replacement) throws CustomArrayException {
         LOGGER.info("Replace all elements greater than value");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
+        if (array == null || array.getElements() == null) {
+            throw new CustomArrayException("CustomArray is null or field elements is null");
+        }
         int[] elements = array.getElements();
         for (int i = 0; i < elements.length; i++) {
             if (elements[i] > value) {
@@ -43,8 +45,9 @@ public class ArrayChangeServiceImpl implements ArrayChangeService {
     @Override
     public void replaceAllLessThanValue(CustomArray array, int value, int replacement) throws CustomArrayException {
         LOGGER.info("Replace all elements less than value");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
+        if (array == null || array.getElements() == null) {
+            throw new CustomArrayException("CustomArray is null or field elements is null");
+        }
         int[] elements = array.getElements();
         for (int i = 0; i < elements.length; i++) {
             if (elements[i] < value) {
@@ -57,8 +60,9 @@ public class ArrayChangeServiceImpl implements ArrayChangeService {
     @Override
     public void replaceAllNegative(CustomArray array, int replacement) throws CustomArrayException {
         LOGGER.info("Replace all negative elements");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
+        if (array == null || array.getElements() == null) {
+            throw new CustomArrayException("CustomArray is null or field elements is null");
+        }
         int[] elements = array.getElements();
         for (int i = 0; i < elements.length; i++) {
             if (elements[i] < 0) {
@@ -69,29 +73,11 @@ public class ArrayChangeServiceImpl implements ArrayChangeService {
     }
 
     @Override
-    public void replaceAllInInterval(CustomArray array, int startIndex, int intervalLength, int replacement)
-            throws CustomArrayException {
-        LOGGER.info("Replace all elements in interval");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
-        int[] elements = array.getElements();
-        int endIndex = startIndex + intervalLength - 1;
-        if (startIndex < 0 || intervalLength < 0 || elements.length < endIndex + 1) {
-            LOGGER.error("Incorrect method params");
-            throw new CustomArrayException("Incorrect method params: startIndex=" + startIndex +
-                    ", intervalLength=" + intervalLength);
-        }
-        for (int i = startIndex; i <= endIndex; i++) {
-            elements[i] = replacement;
-        }
-        array.setElements(elements);
-    }
-
-    @Override
     public void replaceAllStream(CustomArray array, int value, int replacement) throws CustomArrayException {
         LOGGER.info("Replace all elements equals value using stream");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
+        if (array == null || array.getElements() == null) {
+            throw new CustomArrayException("CustomArray is null or field elements is null");
+        }
         int[] elements = array.getElements();
         if (elements.length == 0) {
             return;
@@ -104,8 +90,9 @@ public class ArrayChangeServiceImpl implements ArrayChangeService {
     @Override
     public void replaceAllGreaterThanValueStream(CustomArray array, int value, int replacement) throws CustomArrayException {
         LOGGER.info("Replace all elements greater than value using stream");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
+        if (array == null || array.getElements() == null) {
+            throw new CustomArrayException("CustomArray is null or field elements is null");
+        }
         int[] elements = array.getElements();
         if (elements.length == 0) {
             return;
@@ -118,8 +105,9 @@ public class ArrayChangeServiceImpl implements ArrayChangeService {
     @Override
     public void replaceAllLessThanValueStream(CustomArray array, int value, int replacement) throws CustomArrayException {
         LOGGER.info("Replace all elements less than value using stream");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
+        if (array == null || array.getElements() == null) {
+            throw new CustomArrayException("CustomArray is null or field elements is null");
+        }
         int[] elements = array.getElements();
         if (elements.length == 0) {
             return;
@@ -132,8 +120,9 @@ public class ArrayChangeServiceImpl implements ArrayChangeService {
     @Override
     public void replaceAllNegativeStream(CustomArray array, int replacement) throws CustomArrayException {
         LOGGER.info("Replace all negative elements using stream");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
+        if (array == null || array.getElements() == null) {
+            throw new CustomArrayException("CustomArray is null or field elements is null");
+        }
         int[] elements = array.getElements();
         if (elements.length == 0) {
             return;
@@ -141,27 +130,6 @@ public class ArrayChangeServiceImpl implements ArrayChangeService {
         IntStream stream = Arrays.stream(elements);
         int[] newElements = stream.map((x) -> (x < 0) ? replacement : x).toArray();
         array.setElements(newElements);
-    }
-
-    @Override
-    public void replaceAllInIntervalStream(CustomArray array, int startIndex, int intervalLength, int replacement)
-            throws CustomArrayException {
-        LOGGER.info("Replace all elements in interval using stream");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
-        int[] elements = array.getElements();
-        int endIndex = startIndex + intervalLength - 1;
-        if (startIndex < 0 || intervalLength < 0 || elements.length < endIndex + 1) {
-            LOGGER.error("Incorrect method params");
-            throw new CustomArrayException("Incorrect method params: startIndex=" + startIndex +
-                    ", intervalLength=" + intervalLength);
-        }
-        if (elements.length == 0) {
-            return;
-        }
-        IntStream stream = Arrays.stream(elements);
-        //int[] newElements = stream.;
-        //array.setElements(newElements);//fixme: replace in interval stream
     }
 }
 

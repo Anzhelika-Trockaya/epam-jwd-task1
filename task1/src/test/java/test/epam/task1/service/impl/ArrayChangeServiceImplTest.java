@@ -116,33 +116,6 @@ public class ArrayChangeServiceImplTest {
         return data;
     }
 
-    @DataProvider(name = "data_for_replaceAllInInterval")
-    public Object[][] createDataForReplaceAllInInterval() {
-        Object[][] data = new Object[3][5];
-        data[0] = new Object[]{
-                new CustomArray(1, 2, 3, 4),
-                1,
-                2,
-                999,
-                new CustomArray(1, 999, 999, 4)
-        };
-        data[1] = new Object[]{
-                new CustomArray(1, 2, 3, 4, 5),
-                0,
-                5,
-                1000,
-                new CustomArray(1000, 1000, 1000, 1000, 1000)
-        };
-        data[2] = new Object[]{
-                new CustomArray(),
-                0,
-                0,
-                888,
-                new CustomArray()
-        };
-        return data;
-    }
-
     @DataProvider(name = "data_for_replaceAllStream")
     public Object[][] createDataForReplaceAllStream() {
         Object[][] data = new Object[4][4];
@@ -248,33 +221,6 @@ public class ArrayChangeServiceImplTest {
         return data;
     }
 
-    @DataProvider(name = "data_for_replaceAllInIntervalStream")
-    public Object[][] createDataForReplaceAllInIntervalStream() {
-        Object[][] data = new Object[3][5];
-        data[0] = new Object[]{
-                new CustomArray(1, 2, 3, 4),
-                1,
-                2,
-                999,
-                new CustomArray(1, 999, 999, 4)
-        };
-        data[1] = new Object[]{
-                new CustomArray(1, 2, 3, 4, 5),
-                0,
-                5,
-                1000,
-                new CustomArray(1000, 1000, 1000, 1000, 1000)
-        };
-        data[2] = new Object[]{
-                new CustomArray(),
-                0,
-                0,
-                888,
-                new CustomArray()
-        };
-        return data;
-    }
-
     @Test(dataProvider = "data_for_replaceAll")
     public void testReplaceAll(CustomArray actual, int value, int replacement, CustomArray expected) throws CustomArrayException {
         changeService.replaceAll(actual, value, replacement);
@@ -296,12 +242,6 @@ public class ArrayChangeServiceImplTest {
     @Test(dataProvider = "data_for_replaceAllNegative")
     public void testReplaceAllNegative(CustomArray actual, int replacement, CustomArray expected) throws CustomArrayException {
         changeService.replaceAllNegative(actual, replacement);
-        assertEquals(actual, expected);
-    }
-
-    @Test(dataProvider = "data_for_replaceAllInInterval")
-    public void testReplaceAllInInterval(CustomArray actual, int startIndex, int intervalLength, int replacement, CustomArray expected) throws CustomArrayException {
-        changeService.replaceAllInInterval(actual, startIndex, intervalLength, replacement);
         assertEquals(actual, expected);
     }
 
@@ -345,31 +285,6 @@ public class ArrayChangeServiceImplTest {
         changeService.replaceAllNegative(new CustomArray(null), 100);
     }
 
-    @Test(expectedExceptions = CustomArrayException.class)
-    public void testReplaceAllInIntervalNull() throws CustomArrayException {
-        changeService.replaceAllInInterval(null, 0, 0,  100);
-    }
-
-    @Test(expectedExceptions = CustomArrayException.class)
-    public void testReplaceAllInIntervalException() throws CustomArrayException {
-        changeService.replaceAllInInterval(new CustomArray(null), 0, 0, 100);
-    }
-
-    @Test(expectedExceptions = CustomArrayException.class)
-    public void testReplaceAllInIntervalNegativeStartIndex() throws CustomArrayException {
-        changeService.replaceAllInInterval(new CustomArray(1, 2, 3, 4), -1, 2, 100);
-    }
-
-    @Test(expectedExceptions = CustomArrayException.class)
-    public void testReplaceAllInIntervalNegativeIntervalLengthIndex() throws CustomArrayException {
-        changeService.replaceAllInInterval(new CustomArray(1, 2, 3, 4), 1, -1, 100);
-    }
-
-    @Test(expectedExceptions = CustomArrayException.class)
-    public void testReplaceAllInIntervalTooMuchIntervalLength() throws CustomArrayException {
-        changeService.replaceAllInInterval(new CustomArray(1, 2, 3, 4), 1, 4, 100);
-    }
-
     @Test(dataProvider = "data_for_replaceAllStream")
     public void testReplaceAllStream(CustomArray actual, int value, int replacement, CustomArray expected) throws CustomArrayException {
         changeService.replaceAll(actual, value, replacement);
@@ -391,12 +306,6 @@ public class ArrayChangeServiceImplTest {
     @Test(dataProvider = "data_for_replaceAllNegativeStream")
     public void testReplaceAllNegativeStream(CustomArray actual, int replacement, CustomArray expected) throws CustomArrayException {
         changeService.replaceAllNegativeStream(actual, replacement);
-        assertEquals(actual, expected);
-    }
-
-    @Test(dataProvider = "data_for_replaceAllInIntervalStream")
-    public void testReplaceAllInIntervalStream(CustomArray actual, int startIndex, int intervalLength, int replacement, CustomArray expected) throws CustomArrayException {
-        changeService.replaceAllInIntervalStream(actual, startIndex, intervalLength, replacement);
         assertEquals(actual, expected);
     }
 
@@ -438,30 +347,5 @@ public class ArrayChangeServiceImplTest {
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReplaceAllNegativeStreamException() throws CustomArrayException {
         changeService.replaceAllNegativeStream(new CustomArray(null), 100);
-    }
-
-    @Test(expectedExceptions = CustomArrayException.class)
-    public void testReplaceAllInIntervalStreamNull() throws CustomArrayException {
-        changeService.replaceAllInIntervalStream(null, 0, 0,  100);
-    }
-
-    @Test(expectedExceptions = CustomArrayException.class)
-    public void testReplaceAllInIntervalStreamException() throws CustomArrayException {
-        changeService.replaceAllInIntervalStream(new CustomArray(null), 0, 0, 100);
-    }
-
-    @Test(expectedExceptions = CustomArrayException.class)
-    public void testReplaceAllInIntervalStreamNegativeStartIndex() throws CustomArrayException {
-        changeService.replaceAllInIntervalStream(new CustomArray(1, 2, 3, 4), -1, 2, 100);
-    }
-
-    @Test(expectedExceptions = CustomArrayException.class)
-    public void testReplaceAllInIntervalStreamNegativeIntervalLengthIndex() throws CustomArrayException {
-        changeService.replaceAllInIntervalStream(new CustomArray(1, 2, 3, 4), 1, -1, 100);
-    }
-
-    @Test(expectedExceptions = CustomArrayException.class)
-    public void testReplaceAllInIntervalStreamTooMuchIntervalLength() throws CustomArrayException {
-        changeService.replaceAllInIntervalStream(new CustomArray(1, 2, 3, 4), 1, 4, 100);
     }
 }

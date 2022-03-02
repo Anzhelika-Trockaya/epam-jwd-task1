@@ -58,33 +58,28 @@ public class ArrayLineReaderImpl implements ArrayLineReader {
     private void checkFile(String fileName) throws CustomArrayException {
         LOGGER.debug("checkFileName");
         if (fileName == null || fileName.isBlank()) {
-            LOGGER.error("fileName is null or empty string");
+            LOGGER.error("fileName is null or empty string"+fileName);
             throw new CustomArrayException("Incorrect file name");
         }
         if (Files.notExists(Paths.get(fileName))) {
-            LOGGER.error("file is not exist");
+            LOGGER.error("File with name '" + fileName + "' does not exist");
             throw new CustomArrayException("File with name '" + fileName + "' does not exist");
         }
         if (!Files.isReadable(Paths.get(fileName))) {
-            LOGGER.error("file is not readable");
+            LOGGER.error("File with name '" + fileName + "' is not readable");
             throw new CustomArrayException("File with name '" + fileName + "' is not readable");
         }
     }
 
-    private String findNextArrayLine(BufferedReader bufferedReader) throws CustomArrayException {
+    private String findNextArrayLine(BufferedReader bufferedReader) throws IOException {
         LOGGER.info("find next array line");
         String currentLine;
-        try {
-            while (bufferedReader.ready()) {
-                currentLine = bufferedReader.readLine();
-                ArrayLineValidator validator = ArrayLineValidator.getInstance();
-                if (validator.isArrayLineCorrect(currentLine)) {
-                    return currentLine;
-                }
+        while (bufferedReader.ready()) {
+            currentLine = bufferedReader.readLine();
+            ArrayLineValidator validator = ArrayLineValidator.getInstance();
+            if (validator.isArrayLineCorrect(currentLine)) {
+                return currentLine;
             }
-        } catch (IOException exception) {
-            LOGGER.error("Exception when use BufferedReader object", exception);
-            throw new CustomArrayException(exception);
         }
         return null;
     }

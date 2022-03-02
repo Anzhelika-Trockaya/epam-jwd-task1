@@ -16,8 +16,9 @@ public class ArraySortServiceImpl implements ArraySortService {
     @Override
     public void bubbleSort(CustomArray array) throws CustomArrayException {
         LOGGER.info("bubble sort array");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
+        if (array == null || array.getElements() == null) {
+            throw new CustomArrayException("CustomArray is null or field elements is null");
+        }
         int[] elements = array.getElements();
         boolean isSorted = false;
         int buf;
@@ -38,8 +39,9 @@ public class ArraySortServiceImpl implements ArraySortService {
     @Override
     public void insertionSort(CustomArray array) throws CustomArrayException {
         LOGGER.info("insertion sort array");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
+        if (array == null || array.getElements() == null) {
+            throw new CustomArrayException("CustomArray is null or field elements is null");
+        }
         int[] elements = array.getElements();
         int tempIndex;
         int currentValue;
@@ -57,11 +59,12 @@ public class ArraySortServiceImpl implements ArraySortService {
     @Override
     public void shellSort(CustomArray array) throws CustomArrayException {
         LOGGER.info("shell sort array");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
+        if (array == null || array.getElements() == null) {
+            throw new CustomArrayException("CustomArray is null or field elements is null");
+        }
         int[] elements = array.getElements();
         int buf;
-        for (int i = 0; i < elements.length - 1;) {
+        for (int i = 0; i < elements.length - 1; ) {
             if (elements[i] > elements[i + 1]) {
                 buf = elements[i];
                 elements[i] = elements[i + 1];
@@ -79,8 +82,9 @@ public class ArraySortServiceImpl implements ArraySortService {
     @Override
     public void streamSort(CustomArray array) throws CustomArrayException {
         LOGGER.info("sort array using stream");
-        ArrayChecker checker = new ArrayChecker();
-        checker.checkArray(array);
+        if (array == null || array.getElements() == null) {
+            throw new CustomArrayException("CustomArray is null or field elements is null");
+        }
         int[] elements = array.getElements();
         IntStream stream = Arrays.stream(elements);
         int[] newElements = stream.sorted().toArray();
