@@ -15,7 +15,23 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class ArrayLineReaderImplTest {
+    public static final String FILE_WITH_ONLY_CORRECT_LINES_NAME;
+    public static final String FILE_ONLY_WITH_ONE_CORRECT_LINE_NAME;
+    public static final String FILE_WITH_LAST_CORRECT_LINE_NAME;
+    public static final String EMPTY_FILE_NAME;
+    public static final String FILE_WITH_ONLY_INCORRECT_LINES_NAME;
+
     ArrayLineReaderImpl arrayLineReader = new ArrayLineReaderImpl();
+
+    static{
+        ClassLoader loader = ArrayLineReaderImplTest.class.getClassLoader();
+        FILE_WITH_ONLY_CORRECT_LINES_NAME = loader.getResource("testArraysFileWithOnlyCorrectLines.txt").toString().substring(6);
+        FILE_ONLY_WITH_ONE_CORRECT_LINE_NAME = loader.getResource("testArraysFileOnlyWithOneCorrectLine.txt").toString().substring(6);
+        FILE_WITH_LAST_CORRECT_LINE_NAME = loader.getResource("testArraysFileWithLastCorrectLine.txt").toString().substring(6);
+        EMPTY_FILE_NAME = loader.getResource("testEmptyFile.txt").toString().substring(6);
+        FILE_WITH_ONLY_INCORRECT_LINES_NAME = loader.getResource("testArraysFileWithOnlyIncorrectLines.txt").toString().substring(6);
+
+    }
 
     @DataProvider(name = "files_data")
     public Object[][] createData() {
@@ -73,23 +89,23 @@ public class ArrayLineReaderImplTest {
 
         Object[][] data = new Object[5][2];
         data[0] = new Object[]{
-                this.getClass().getClassLoader().getResource("testArraysFileWithOnlyCorrectLines.txt").toString().substring(6),
+                FILE_WITH_ONLY_CORRECT_LINES_NAME,
                 linesFromFileWithOnlyCorrectLines
         };
         data[1] = new Object[]{
-                this.getClass().getClassLoader().getResource("testArraysFileOnlyWithOneCorrectLine.txt").toString().substring(6),
+                FILE_ONLY_WITH_ONE_CORRECT_LINE_NAME,
                 linesFromFileOnlyWithOneCorrectLine
         };
         data[2] = new Object[]{
-                this.getClass().getClassLoader().getResource("testArraysFileWithLastCorrectLine.txt").toString().substring(6),
+                FILE_WITH_LAST_CORRECT_LINE_NAME,
                 linesFromFileWithLastCorrectLine
         };
         data[3] = new Object[]{
-                this.getClass().getClassLoader().getResource("testEmptyFile.txt").toString().substring(6),
+                EMPTY_FILE_NAME,
                 emptyList
         };
         data[4] = new Object[]{
-                this.getClass().getClassLoader().getResource("testArraysFileWithOnlyIncorrectLines.txt").toString().substring(6),
+                FILE_WITH_ONLY_INCORRECT_LINES_NAME,
                 emptyList
         };
         return data;

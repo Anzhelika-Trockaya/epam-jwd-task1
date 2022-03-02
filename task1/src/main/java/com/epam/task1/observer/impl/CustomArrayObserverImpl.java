@@ -17,7 +17,7 @@ public class CustomArrayObserverImpl implements com.epam.task1.observer.CustomAr
     private static final Logger LOGGER = LogManager.getLogger();
 
     @Override
-    public void elementsChanged(CustomArrayEvent event) {
+    public void updateCustomArrayParams(CustomArrayEvent event) {
         ArrayFindService arrayFindService = new ArrayFindServiceImpl();
         try {
             CustomArray array = event.getSource();

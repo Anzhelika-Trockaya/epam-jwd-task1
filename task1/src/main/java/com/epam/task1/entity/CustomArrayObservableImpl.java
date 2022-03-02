@@ -21,7 +21,7 @@ public abstract class CustomArrayObservableImpl implements CustomArrayObservable
     public void notifyObserver() {
         CustomArrayEvent event = new CustomArrayEvent((CustomArray) this);
         if (observer != null) {
-            observer.elementsChanged(event);
+            observer.updateCustomArrayParams(event);
         }
     }
 }

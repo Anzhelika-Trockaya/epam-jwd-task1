@@ -11,6 +11,9 @@ public class CustomArrayParameters implements Serializable, Cloneable {
     private int sum;
     private OptionalDouble average;
 
+    public CustomArrayParameters() {
+    }
+
     public CustomArrayParameters(OptionalInt max, OptionalInt min, int sum, OptionalDouble average) {
         this.max = max;
         this.min = min;
