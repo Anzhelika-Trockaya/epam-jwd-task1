@@ -28,7 +28,7 @@ public class CustomArrayObserverImpl implements com.epam.task1.observer.CustomAr
             CustomArrayParameters params = new CustomArrayParameters(max, min, sum, average);
             int id = array.getId();
             Warehouse warehouse = Warehouse.getInstance();
-            warehouse.replace(id, params);
+            warehouse.put(id, params);
         } catch (CustomArrayException customArrayException) {
             LOGGER.error("data were not refreshed", customArrayException);
         }
