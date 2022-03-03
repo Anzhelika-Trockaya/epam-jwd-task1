@@ -1,8 +1,6 @@
 package com.epam.task1.parser.impl;
 
-import com.epam.task1.exception.CustomArrayException;
 import com.epam.task1.parser.ArrayParser;
-import com.epam.task1.validation.ArrayLineValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,57 +15,58 @@ public class ArrayParserImpl implements ArrayParser {
 
     @Override
     public int[] parse(String line) {
-        LOGGER.info("parse line='" + line + "'");
         line = line.replaceAll("\\s", "");
-        int[] arrayElements;
+        int[] array;
         if (!line.isEmpty()) {
             String[] lineParts = line.split(SPLITTER_REGEX);
-            arrayElements = parseIntArrayFromStringArray(lineParts);
+            array = parseIntArrayFromStringArray(lineParts);
         } else {
-            arrayElements = new int[0];
+            array = new int[0];
         }
-        return arrayElements;
+        LOGGER.info("Array from line='" + line + "' parsed. " + Arrays.toString(array));
+        return array;
     }
 
 
     @Override
     public List<int[]> parseAll(List<String> lines) {
-        LOGGER.info("parse line list");
         List<int[]> arrays = new ArrayList<>();
         int[] currentArray;
         for (String line : lines) {
             currentArray = parse(line);
             arrays.add(currentArray);
         }
+        LOGGER.info("Arrays list parsed." + arrays);
         return arrays;
     }
 
     @Override
     public int[] parseStream(String line) {
-        LOGGER.info("parse line='" + line + "' using stream");
         if (line.isBlank()) {
             return new int[0];
         }
         line = line.replaceAll("\\s", "");
         String[] lineParts = line.split(SPLITTER_REGEX);
-        return Arrays.stream(lineParts)
-                .mapToInt(Integer::parseInt).toArray();
+        int[] array = Arrays.stream(lineParts).mapToInt(Integer::parseInt).toArray();
+        LOGGER.info("Array from line='" + line + "' parsed. " + Arrays.toString(array));
+        return array;
     }
 
     @Override
     public List<int[]> parseAllStream(List<String> lines) {
-        LOGGER.info("parse line list using stream");
-        return lines.stream()
+        List<int[]> arrays = lines.stream()
                 .map(this::parseStream)
                 .collect(Collectors.toList());
+        LOGGER.info("Arrays list parsed." + arrays);
+        return arrays;
     }
 
     private int[] parseIntArrayFromStringArray(String[] strings) {
-        LOGGER.debug("parse int[] from String[]");
         int[] ints = new int[strings.length];
         for (int i = 0; i < ints.length; i++) {
             ints[i] = Integer.parseInt(strings[i]);
         }
+        LOGGER.debug("parse int[] from String[]: " + Arrays.toString(ints));
         return ints;
     }
 }

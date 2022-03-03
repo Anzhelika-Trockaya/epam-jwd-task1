@@ -252,7 +252,7 @@ public class ArrayChangeServiceImplTest {
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReplaceAllException() throws CustomArrayException {
-        changeService.replaceAll(new CustomArray(null), 12, 100);
+        changeService.replaceAll(new CustomArray((int[]) null), 12, 100);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
@@ -262,7 +262,7 @@ public class ArrayChangeServiceImplTest {
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReplaceAllGreaterThanValueException() throws CustomArrayException {
-        changeService.replaceAllGreaterThanValue(new CustomArray(null), 12, 100);
+        changeService.replaceAllGreaterThanValue(new CustomArray((int[]) null), 12, 100);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
@@ -272,7 +272,7 @@ public class ArrayChangeServiceImplTest {
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReplaceAllLessThanValueException() throws CustomArrayException {
-        changeService.replaceAllLessThanValue(new CustomArray(null), 12, 100);
+        changeService.replaceAllLessThanValue(new CustomArray((int[]) null), 12, 100);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
@@ -282,7 +282,7 @@ public class ArrayChangeServiceImplTest {
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReplaceAllNegativeException() throws CustomArrayException {
-        changeService.replaceAllNegative(new CustomArray(null), 100);
+        changeService.replaceAllNegative(new CustomArray((int[]) null), 100);
     }
 
     @Test(dataProvider = "data_for_replaceAllStream")
@@ -316,7 +316,7 @@ public class ArrayChangeServiceImplTest {
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReplaceAllStreamException() throws CustomArrayException {
-        changeService.replaceAllStream(new CustomArray(null), 12, 100);
+        changeService.replaceAllStream(new CustomArray((int[]) null), 12, 100);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
@@ -326,7 +326,7 @@ public class ArrayChangeServiceImplTest {
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReplaceAllGreaterThanValueStreamException() throws CustomArrayException {
-        changeService.replaceAllGreaterThanValueStream(new CustomArray(null), 12, 100);
+        changeService.replaceAllGreaterThanValueStream(new CustomArray((int[]) null), 12, 100);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
@@ -336,7 +336,7 @@ public class ArrayChangeServiceImplTest {
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReplaceAllLessThanValueStreamException() throws CustomArrayException {
-        changeService.replaceAllLessThanValueStream(new CustomArray(null), 12, 100);
+        changeService.replaceAllLessThanValueStream(new CustomArray((int[]) null), 12, 100);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
@@ -346,6 +346,6 @@ public class ArrayChangeServiceImplTest {
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReplaceAllNegativeStreamException() throws CustomArrayException {
-        changeService.replaceAllNegativeStream(new CustomArray(null), 100);
+        changeService.replaceAllNegativeStream(new CustomArray((int[]) null), 100);
     }
 }

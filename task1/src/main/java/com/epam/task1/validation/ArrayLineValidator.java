@@ -19,8 +19,9 @@ public class ArrayLineValidator {
     }
 
     public boolean isArrayLineCorrect(String line) {
-        LOGGER.info("is array line correct");
-        return line != null && (line.isBlank() || line.matches(ARRAY_LINE_REGEX));
+        boolean isCorrect = line != null && (line.isBlank() || line.matches(ARRAY_LINE_REGEX));
+        LOGGER.debug(isCorrect ? "Line '" + line + "' is correct" : "Line '" + line + "' is incorrect");
+        return isCorrect;
     }
 }
 

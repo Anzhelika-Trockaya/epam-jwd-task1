@@ -1,5 +1,6 @@
 package com.epam.task1.entity;
 
+import com.epam.task1.observer.impl.CustomArrayObservableImpl;
 import com.epam.task1.util.IdGeneratorUtil;
 
 import java.io.Serializable;
@@ -33,7 +34,7 @@ public class CustomArray extends CustomArrayObservableImpl implements Serializab
         super.notifyObserver();
     }
 
-    public int length(){
+    public int length() {
         return elements.length;
     }
 
@@ -73,8 +74,8 @@ public class CustomArray extends CustomArrayObservableImpl implements Serializab
     }
 
     @Override
-    public CustomArray clone(){
-        CustomArray clone = this;
+    public CustomArray clone() throws CloneNotSupportedException {
+        CustomArray clone = (CustomArray) super.clone();
         clone.setElements(this.elements);
         return clone;
     }

@@ -67,7 +67,7 @@ public class ArraySortServiceImplTest {
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testBubbleSortException() throws CustomArrayException {
-        sortService.bubbleSort(new CustomArray(null));
+        sortService.bubbleSort(new CustomArray((int[]) null));
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
@@ -77,7 +77,7 @@ public class ArraySortServiceImplTest {
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testInsertionSortException() throws CustomArrayException {
-        sortService.insertionSort(new CustomArray(null));
+        sortService.insertionSort(new CustomArray((int[]) null));
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
@@ -87,7 +87,7 @@ public class ArraySortServiceImplTest {
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testShellSortException() throws CustomArrayException {
-        sortService.shellSort(new CustomArray(null));
+        sortService.shellSort(new CustomArray((int[]) null));
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
@@ -97,7 +97,7 @@ public class ArraySortServiceImplTest {
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testStreamSortException() throws CustomArrayException {
-        sortService.streamSort(new CustomArray(null));
+        sortService.streamSort(new CustomArray((int[]) null));
     }
 
     @Test(expectedExceptions = CustomArrayException.class)

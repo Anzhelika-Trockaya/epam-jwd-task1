@@ -22,7 +22,6 @@ public class ArrayLineReaderImpl implements ArrayLineReader {
 
     @Override
     public List<String> readAllArrayLines(String fileName) throws CustomArrayException {
-        LOGGER.info("read all array strings");
         checkFile(fileName);
         List<String> lines = new ArrayList<>();
         String currentLine;
@@ -37,12 +36,12 @@ public class ArrayLineReaderImpl implements ArrayLineReader {
             LOGGER.error("Exception when use BufferedReader object", ioException);
             throw new CustomArrayException(ioException);
         }
+        LOGGER.info("All array strings read."+lines);
         return lines;
     }
 
     @Override
     public List<String> readAllArrayLinesStream(String fileName) throws CustomArrayException {
-        LOGGER.info("read all array strings using stream");
         checkFile(fileName);
         Stream<String> stream;
         try {
@@ -52,13 +51,15 @@ public class ArrayLineReaderImpl implements ArrayLineReader {
             throw new CustomArrayException(ioException);
         }
         ArrayLineValidator validator = ArrayLineValidator.getInstance();
-        return stream.filter(validator::isArrayLineCorrect).collect(Collectors.toList());
+        List<String> lines = stream.filter(validator::isArrayLineCorrect).collect(Collectors.toList());
+        LOGGER.info("Array lines read."+lines);
+        return lines;
     }
 
     private void checkFile(String fileName) throws CustomArrayException {
         LOGGER.debug("checkFileName");
         if (fileName == null || fileName.isBlank()) {
-            LOGGER.error("fileName is null or empty string"+fileName);
+            LOGGER.error("fileName is null or empty string");
             throw new CustomArrayException("Incorrect file name");
         }
         if (Files.notExists(Paths.get(fileName))) {
@@ -72,15 +73,16 @@ public class ArrayLineReaderImpl implements ArrayLineReader {
     }
 
     private String findNextArrayLine(BufferedReader bufferedReader) throws IOException {
-        LOGGER.info("find next array line");
         String currentLine;
         while (bufferedReader.ready()) {
             currentLine = bufferedReader.readLine();
             ArrayLineValidator validator = ArrayLineValidator.getInstance();
             if (validator.isArrayLineCorrect(currentLine)) {
+                LOGGER.debug("Next array line='"+currentLine+"'");
                 return currentLine;
             }
         }
+        LOGGER.debug("File has no more lines");
         return null;
     }
 }

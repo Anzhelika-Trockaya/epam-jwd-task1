@@ -30,7 +30,8 @@ public class CustomArrayObserverImpl implements com.epam.task1.observer.CustomAr
             Warehouse warehouse = Warehouse.getInstance();
             warehouse.put(id, params);
         } catch (CustomArrayException customArrayException) {
-            LOGGER.error("data were not refreshed", customArrayException);
+            LOGGER.error("data were not refreshed. " + event, customArrayException);
         }
+        LOGGER.info("CustomArray params updated." + event);
     }
 }

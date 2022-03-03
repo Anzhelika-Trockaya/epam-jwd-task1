@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.OptionalDouble;
 import java.util.OptionalInt;
 
-public class CustomArrayParameters implements Serializable, Cloneable {
+public class CustomArrayParameters implements Serializable {
     private static final long serialVersionUID = -6289245971251186827L;
     private OptionalInt max;
     private OptionalInt min;

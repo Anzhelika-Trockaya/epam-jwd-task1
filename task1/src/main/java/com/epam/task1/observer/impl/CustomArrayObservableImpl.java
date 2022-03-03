@@ -1,5 +1,6 @@
-package com.epam.task1.entity;
+package com.epam.task1.observer.impl;
 
+import com.epam.task1.entity.CustomArray;
 import com.epam.task1.observer.CustomArrayEvent;
 import com.epam.task1.observer.CustomArrayObservable;
 import com.epam.task1.observer.CustomArrayObserver;
