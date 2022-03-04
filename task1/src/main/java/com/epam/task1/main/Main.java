@@ -27,10 +27,10 @@ public class Main {
         }
         String fileName = fileURI.toString().substring(6);
         RepositoryConfigurator repositoryConfigurator = new RepositoryConfigurator();
-        WarehouseConfigurator warehouseConfigurator = new WarehouseConfigurator();
         Repository repository = repositoryConfigurator.configure(fileName);
         CustomArrayObserver observer = new CustomArrayObserverImpl();
         repository.forEach((x)->x.attach(observer));
+        WarehouseConfigurator warehouseConfigurator = new WarehouseConfigurator();
         Warehouse warehouse = warehouseConfigurator.configure(repository.getAll());
         CustomArray array = repository.get(0);
         ArrayChangeService changeService = new ArrayChangeServiceImpl();
