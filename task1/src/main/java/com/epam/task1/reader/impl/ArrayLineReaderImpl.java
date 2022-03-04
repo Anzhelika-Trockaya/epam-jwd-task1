@@ -36,7 +36,7 @@ public class ArrayLineReaderImpl implements ArrayLineReader {
             LOGGER.error("Exception when use BufferedReader object", ioException);
             throw new CustomArrayException(ioException);
         }
-        LOGGER.info("All array strings read."+lines);
+        LOGGER.info("All array strings read."+ lines);
         return lines;
     }
 
@@ -57,7 +57,6 @@ public class ArrayLineReaderImpl implements ArrayLineReader {
     }
 
     private void checkFile(String fileName) throws CustomArrayException {
-        LOGGER.debug("checkFileName");
         if (fileName == null || fileName.isBlank()) {
             LOGGER.error("fileName is null or empty string");
             throw new CustomArrayException("Incorrect file name");
@@ -70,6 +69,7 @@ public class ArrayLineReaderImpl implements ArrayLineReader {
             LOGGER.error("File with name '" + fileName + "' is not readable");
             throw new CustomArrayException("File with name '" + fileName + "' is not readable");
         }
+        LOGGER.debug("File "+fileName+" exists and is readable.");
     }
 
     private String findNextArrayLine(BufferedReader bufferedReader) throws IOException {

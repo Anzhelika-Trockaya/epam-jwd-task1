@@ -29,9 +29,10 @@ public class WarehouseConfigurator {
                 int id = array.getId();
                 warehouse.put(id, params);
             } catch (CustomArrayException exception) {
-                LOGGER.error("Params of array:" + array + "not added", exception);
+                LOGGER.error("Params of array:" + array + "not added.", exception);
             }
         }
+        LOGGER.info("Warehouse configured." + warehouse);
         return warehouse;
     }
 }

@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 public class ArrayChangeServiceImplTest {
-    ArrayChangeServiceImpl changeService = new ArrayChangeServiceImpl();
+    public static final ArrayChangeServiceImpl CHANGE_SERVICE = new ArrayChangeServiceImpl();
 
     @DataProvider(name = "data_for_replaceAll")
     public Object[][] createDataForReplaceAll() {
@@ -223,129 +223,129 @@ public class ArrayChangeServiceImplTest {
 
     @Test(dataProvider = "data_for_replaceAll")
     public void testReplaceAll(CustomArray actual, int value, int replacement, CustomArray expected) throws CustomArrayException {
-        changeService.replaceAll(actual, value, replacement);
+        CHANGE_SERVICE.replaceAll(actual, value, replacement);
         assertEquals(actual, expected);
     }
 
     @Test(dataProvider = "data_for_replaceAllGreater")
     public void testReplaceAllGreaterThanValue(CustomArray actual, int value, int replacement, CustomArray expected) throws CustomArrayException {
-        changeService.replaceAllGreaterThanValue(actual, value, replacement);
+        CHANGE_SERVICE.replaceAllGreaterThanValue(actual, value, replacement);
         assertEquals(actual, expected);
     }
 
     @Test(dataProvider = "data_for_replaceAllLess")
     public void testReplaceAllLessThanValue(CustomArray actual, int value, int replacement, CustomArray expected) throws CustomArrayException {
-        changeService.replaceAllLessThanValue(actual, value, replacement);
+        CHANGE_SERVICE.replaceAllLessThanValue(actual, value, replacement);
         assertEquals(actual, expected);
     }
 
     @Test(dataProvider = "data_for_replaceAllNegative")
     public void testReplaceAllNegative(CustomArray actual, int replacement, CustomArray expected) throws CustomArrayException {
-        changeService.replaceAllNegative(actual, replacement);
+        CHANGE_SERVICE.replaceAllNegative(actual, replacement);
         assertEquals(actual, expected);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReplaceAllNull() throws CustomArrayException {
-        changeService.replaceAll(null, 12, 100);
+        CHANGE_SERVICE.replaceAll(null, 12, 100);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReplaceAllException() throws CustomArrayException {
-        changeService.replaceAll(new CustomArray((int[]) null), 12, 100);
+        CHANGE_SERVICE.replaceAll(new CustomArray((int[]) null), 12, 100);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReplaceAllGreaterThanValueNull() throws CustomArrayException {
-        changeService.replaceAllGreaterThanValue(null, 12, 100);
+        CHANGE_SERVICE.replaceAllGreaterThanValue(null, 12, 100);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReplaceAllGreaterThanValueException() throws CustomArrayException {
-        changeService.replaceAllGreaterThanValue(new CustomArray((int[]) null), 12, 100);
+        CHANGE_SERVICE.replaceAllGreaterThanValue(new CustomArray((int[]) null), 12, 100);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReplaceAllLessThanValueNull() throws CustomArrayException {
-        changeService.replaceAllLessThanValue(null, 12, 100);
+        CHANGE_SERVICE.replaceAllLessThanValue(null, 12, 100);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReplaceAllLessThanValueException() throws CustomArrayException {
-        changeService.replaceAllLessThanValue(new CustomArray((int[]) null), 12, 100);
+        CHANGE_SERVICE.replaceAllLessThanValue(new CustomArray((int[]) null), 12, 100);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReplaceAllNegativeNull() throws CustomArrayException {
-        changeService.replaceAllNegative(null, 100);
+        CHANGE_SERVICE.replaceAllNegative(null, 100);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReplaceAllNegativeException() throws CustomArrayException {
-        changeService.replaceAllNegative(new CustomArray((int[]) null), 100);
+        CHANGE_SERVICE.replaceAllNegative(new CustomArray((int[]) null), 100);
     }
 
     @Test(dataProvider = "data_for_replaceAllStream")
     public void testReplaceAllStream(CustomArray actual, int value, int replacement, CustomArray expected) throws CustomArrayException {
-        changeService.replaceAll(actual, value, replacement);
+        CHANGE_SERVICE.replaceAll(actual, value, replacement);
         assertEquals(actual, expected);
     }
 
     @Test(dataProvider = "data_for_replaceAllGreaterStream")
     public void testReplaceAllGreaterThanValueStream(CustomArray actual, int value, int replacement, CustomArray expected) throws CustomArrayException {
-        changeService.replaceAllGreaterThanValueStream(actual, value, replacement);
+        CHANGE_SERVICE.replaceAllGreaterThanValueStream(actual, value, replacement);
         assertEquals(actual, expected);
     }
 
     @Test(dataProvider = "data_for_replaceAllLessStream")
     public void testReplaceAllLessThanValueStream(CustomArray actual, int value, int replacement, CustomArray expected) throws CustomArrayException {
-        changeService.replaceAllLessThanValueStream(actual, value, replacement);
+        CHANGE_SERVICE.replaceAllLessThanValueStream(actual, value, replacement);
         assertEquals(actual, expected);
     }
 
     @Test(dataProvider = "data_for_replaceAllNegativeStream")
     public void testReplaceAllNegativeStream(CustomArray actual, int replacement, CustomArray expected) throws CustomArrayException {
-        changeService.replaceAllNegativeStream(actual, replacement);
+        CHANGE_SERVICE.replaceAllNegativeStream(actual, replacement);
         assertEquals(actual, expected);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReplaceAllStreamNull() throws CustomArrayException {
-        changeService.replaceAllStream(null, 12, 100);
+        CHANGE_SERVICE.replaceAllStream(null, 12, 100);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReplaceAllStreamException() throws CustomArrayException {
-        changeService.replaceAllStream(new CustomArray((int[]) null), 12, 100);
+        CHANGE_SERVICE.replaceAllStream(new CustomArray((int[]) null), 12, 100);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReplaceAllGreaterThanValueStreamNull() throws CustomArrayException {
-        changeService.replaceAllGreaterThanValueStream(null, 12, 100);
+        CHANGE_SERVICE.replaceAllGreaterThanValueStream(null, 12, 100);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReplaceAllGreaterThanValueStreamException() throws CustomArrayException {
-        changeService.replaceAllGreaterThanValueStream(new CustomArray((int[]) null), 12, 100);
+        CHANGE_SERVICE.replaceAllGreaterThanValueStream(new CustomArray((int[]) null), 12, 100);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReplaceAllLessThanValueStreamNull() throws CustomArrayException {
-        changeService.replaceAllLessThanValueStream(null, 12, 100);
+        CHANGE_SERVICE.replaceAllLessThanValueStream(null, 12, 100);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReplaceAllLessThanValueStreamException() throws CustomArrayException {
-        changeService.replaceAllLessThanValueStream(new CustomArray((int[]) null), 12, 100);
+        CHANGE_SERVICE.replaceAllLessThanValueStream(new CustomArray((int[]) null), 12, 100);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReplaceAllNegativeStreamNull() throws CustomArrayException {
-        changeService.replaceAllNegativeStream(null, 100);
+        CHANGE_SERVICE.replaceAllNegativeStream(null, 100);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReplaceAllNegativeStreamException() throws CustomArrayException {
-        changeService.replaceAllNegativeStream(new CustomArray((int[]) null), 100);
+        CHANGE_SERVICE.replaceAllNegativeStream(new CustomArray((int[]) null), 100);
     }
 }

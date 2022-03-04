@@ -21,7 +21,7 @@ public class ArrayLineReaderImplTest {
     public static final String EMPTY_FILE_NAME;
     public static final String FILE_WITH_ONLY_INCORRECT_LINES_NAME;
 
-    ArrayLineReaderImpl arrayLineReader = new ArrayLineReaderImpl();
+    public static final ArrayLineReaderImpl ARRAY_LINE_READER = new ArrayLineReaderImpl();
 
     static {
         ClassLoader loader = ArrayLineReaderImplTest.class.getClassLoader();
@@ -133,18 +133,18 @@ public class ArrayLineReaderImplTest {
 
     @Test(dataProvider = "files_data")
     public void testReadAllArrayLines(String fileName, List<String> expected) throws CustomArrayException {
-        List<String> actual = arrayLineReader.readAllArrayLines(fileName);
+        List<String> actual = ARRAY_LINE_READER.readAllArrayLines(fileName);
         assertEquals(actual, expected);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReadAllArrayLinesEmptyFileName() throws CustomArrayException {
-        arrayLineReader.readAllArrayLines("");
+        ARRAY_LINE_READER.readAllArrayLines("");
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReadAllArrayLinesNullFileName() throws CustomArrayException {
-        arrayLineReader.readAllArrayLines(null);
+        ARRAY_LINE_READER.readAllArrayLines(null);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
@@ -152,23 +152,23 @@ public class ArrayLineReaderImplTest {
         File file = Files.createTempFile("notExists", ".txt").toFile();
         String fileName = file.getAbsolutePath();
         assertTrue(file.delete());
-        arrayLineReader.readAllArrayLines(fileName);
+        ARRAY_LINE_READER.readAllArrayLines(fileName);
     }
 
     @Test(dataProvider = "files_data_stream")
     public void testReadAllArrayLinesStream(String fileName, List<String> expected) throws CustomArrayException {
-        List<String> actual = arrayLineReader.readAllArrayLinesStream(fileName);
+        List<String> actual = ARRAY_LINE_READER.readAllArrayLinesStream(fileName);
         assertEquals(actual, expected);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReadAllArrayLinesStreamEmptyFileName() throws CustomArrayException {
-        arrayLineReader.readAllArrayLinesStream("");
+        ARRAY_LINE_READER.readAllArrayLinesStream("");
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testReadAllArrayLinesStreamNullFileName() throws CustomArrayException {
-        arrayLineReader.readAllArrayLinesStream(null);
+        ARRAY_LINE_READER.readAllArrayLinesStream(null);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
@@ -176,7 +176,7 @@ public class ArrayLineReaderImplTest {
         File file = Files.createTempFile("notExists", ".txt").toFile();
         String fileName = file.getAbsolutePath();
         assertTrue(file.delete());
-        arrayLineReader.readAllArrayLinesStream(fileName);
+        ARRAY_LINE_READER.readAllArrayLinesStream(fileName);
     }
 }
 

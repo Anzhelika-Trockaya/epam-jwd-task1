@@ -11,7 +11,7 @@ import java.util.List;
 import static org.testng.Assert.*;
 
 public class ArrayParserImplTest {
-    ArrayParserImpl parser = new ArrayParserImpl();
+    public static final ArrayParserImpl PARSER = new ArrayParserImpl();
 
     @DataProvider(name = "parse_data")
     public Object[][] createParseData() {
@@ -125,26 +125,26 @@ public class ArrayParserImplTest {
 
     @Test(dataProvider = "parse_data")
     public void testParse(String line, int[] expected) {
-        int[] actual = parser.parse(line);
+        int[] actual = PARSER.parse(line);
         assertEquals(expected, actual);
     }
 
     @Test(dataProvider = "parseAll_data")
     public void testParseAll(List<String> lines, List<int[]> expected) {
-        List<int[]> actual = parser.parseAll(lines);
+        List<int[]> actual = PARSER.parseAll(lines);
         EqualsChecker comparator = new EqualsChecker();
         assertTrue(comparator.areEqualsListsOfArrays(expected, actual));
     }
 
     @Test(dataProvider = "parse_data_for_stream")
     public void testParseStream(String line, int[] expected) {
-        int[] actual = parser.parseStream(line);
+        int[] actual = PARSER.parseStream(line);
         assertEquals(expected, actual);
     }
 
     @Test(dataProvider = "parseAllStream_data")
     public void testParseAllStream(List<String> lines, List<int[]> expected) {
-        List<int[]> actual = parser.parseAllStream(lines);
+        List<int[]> actual = PARSER.parseAllStream(lines);
         EqualsChecker comparator = new EqualsChecker();
         assertTrue(comparator.areEqualsListsOfArrays(expected, actual));
     }

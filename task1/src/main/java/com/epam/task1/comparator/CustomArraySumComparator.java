@@ -16,8 +16,7 @@ public class CustomArraySumComparator implements Comparator<CustomArray> {
     public int compare(CustomArray o1, CustomArray o2) {
         int sum1 = calculateSum(o1);
         int sum2 = calculateSum(o2);
-        int result = Integer.compare(sum1, sum2);
-        return result;
+        return Integer.compare(sum1, sum2);
     }
 
     private int calculateSum(CustomArray array) {

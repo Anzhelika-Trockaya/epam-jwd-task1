@@ -17,6 +17,7 @@ public class ArraySortServiceImpl implements ArraySortService {
     public void bubbleSort(CustomArray array) throws CustomArrayException {
         LOGGER.info("bubble sort array");
         if (array == null || array.getElements() == null) {
+            LOGGER.error("CustomArray is null or field elements is null");
             throw new CustomArrayException("CustomArray is null or field elements is null");
         }
         int[] elements = array.getElements();
@@ -40,6 +41,7 @@ public class ArraySortServiceImpl implements ArraySortService {
     public void insertionSort(CustomArray array) throws CustomArrayException {
         LOGGER.info("insertion sort array");
         if (array == null || array.getElements() == null) {
+            LOGGER.error("CustomArray is null or field elements is null");
             throw new CustomArrayException("CustomArray is null or field elements is null");
         }
         int[] elements = array.getElements();
@@ -60,6 +62,7 @@ public class ArraySortServiceImpl implements ArraySortService {
     public void shellSort(CustomArray array) throws CustomArrayException {
         LOGGER.info("shell sort array");
         if (array == null || array.getElements() == null) {
+            LOGGER.error("CustomArray is null or field elements is null");
             throw new CustomArrayException("CustomArray is null or field elements is null");
         }
         int[] elements = array.getElements();
@@ -83,6 +86,7 @@ public class ArraySortServiceImpl implements ArraySortService {
     public void streamSort(CustomArray array) throws CustomArrayException {
         LOGGER.info("sort array using stream");
         if (array == null || array.getElements() == null) {
+            LOGGER.error("CustomArray is null or field elements is null");
             throw new CustomArrayException("CustomArray is null or field elements is null");
         }
         int[] elements = array.getElements();
@@ -92,7 +96,6 @@ public class ArraySortServiceImpl implements ArraySortService {
     }
 
     private static int searchInsertIndex(int[] elements, int lastIndex, int valueForInsert) {
-        LOGGER.info("search insert index");
         int firstIndex = 0;
         int middleIndex;
         while (firstIndex <= lastIndex) {

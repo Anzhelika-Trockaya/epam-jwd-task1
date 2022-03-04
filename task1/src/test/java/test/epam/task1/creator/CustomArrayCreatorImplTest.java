@@ -12,7 +12,7 @@ import java.util.List;
 import static org.testng.Assert.*;
 
 public class CustomArrayCreatorImplTest {
-    CustomArrayCreatorImpl creator = new CustomArrayCreatorImpl();
+    public static final CustomArrayCreatorImpl CREATOR = new CustomArrayCreatorImpl();
 
     @DataProvider(name = "create_array_data")
     public Object[][] createDataForCreateOneArray() {
@@ -86,25 +86,25 @@ public class CustomArrayCreatorImplTest {
 
     @Test
     public void testCreateDefaultCustomArray() {
-        assertEquals(new CustomArray(), creator.createCustomArray());
+        assertEquals(new CustomArray(), CREATOR.createCustomArray());
     }
 
     @Test(dataProvider = "create_array_data")
     public void testCreateOneCustomArrayWithParam(int[] elements, CustomArray expected) {
-        CustomArray actual = creator.createCustomArray(elements);
+        CustomArray actual = CREATOR.createCustomArray(elements);
         assertEquals(expected, actual);
     }
 
     @Test(dataProvider = "create_arrays_data")
     public void testCreateListOfCustomArrays(List<int[]> elementsList, List<CustomArray> expected) {
-        List<CustomArray> actual = creator.createCustomArrays(elementsList);
+        List<CustomArray> actual = CREATOR.createCustomArrays(elementsList);
         EqualsChecker comparator = new EqualsChecker();
         assertTrue(comparator.areEqualsListsOfCustomArrays(expected, actual));
     }
 
     @Test(dataProvider = "stream_create_arrays_data")
     public void testCreateListOfCustomArraysStream(List<int[]> elementsList, List<CustomArray> expected) {
-        List<CustomArray> actual = creator.createCustomArraysStream(elementsList);
+        List<CustomArray> actual = CREATOR.createCustomArraysStream(elementsList);
         EqualsChecker comparator = new EqualsChecker();
         assertTrue(comparator.areEqualsListsOfCustomArrays(expected, actual));
     }

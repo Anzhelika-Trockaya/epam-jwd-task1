@@ -17,8 +17,7 @@ public class CustomArrayAverageComparator implements Comparator<CustomArray> {
     public int compare(CustomArray o1, CustomArray o2) {
             double average1 = calculateAverage(o1);
             double average2 = calculateAverage(o2);
-            int result = Double.compare(average1, average2);
-        return result;
+        return Double.compare(average1, average2);
     }
 
     private double calculateAverage(CustomArray array) {

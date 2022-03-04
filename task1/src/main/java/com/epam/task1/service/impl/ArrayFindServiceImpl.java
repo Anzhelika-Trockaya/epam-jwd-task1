@@ -9,19 +9,19 @@ import org.apache.logging.log4j.Logger;
 import java.util.Arrays;
 import java.util.OptionalDouble;
 import java.util.OptionalInt;
-import java.util.stream.IntStream;
 
 public class ArrayFindServiceImpl implements ArrayFindService {
     private static final Logger LOGGER = LogManager.getLogger(ArrayFindServiceImpl.class.getName());
 
     @Override
     public OptionalInt findMax(CustomArray array) throws CustomArrayException {
-        LOGGER.info("find max element");
         if (array == null || array.getElements() == null) {
+            LOGGER.error("CustomArray is null or field elements is null");
             throw new CustomArrayException("CustomArray is null or field elements is null");
         }
         int[] elements = array.getElements();
         if (elements.length == 0) {
+            LOGGER.info("Max not found. " + array);
             return OptionalInt.empty();
         }
         int currentMax = elements[0];
@@ -30,17 +30,19 @@ public class ArrayFindServiceImpl implements ArrayFindService {
                 currentMax = elements[i];
             }
         }
+        LOGGER.info("Max = " + currentMax + ". " + array);
         return OptionalInt.of(currentMax);
     }
 
     @Override
     public OptionalInt findMin(CustomArray array) throws CustomArrayException {
-        LOGGER.info("find min element");
         if (array == null || array.getElements() == null) {
+            LOGGER.error("CustomArray is null or field elements is null");
             throw new CustomArrayException("CustomArray is null or field elements is null");
         }
         int[] elements = array.getElements();
         if (elements.length == 0) {
+            LOGGER.info("Min not found. " + array);
             return OptionalInt.empty();
         }
         int currentMin = elements[0];
@@ -49,50 +51,56 @@ public class ArrayFindServiceImpl implements ArrayFindService {
                 currentMin = elements[i];
             }
         }
+        LOGGER.info("Min = " + currentMin + ". " + array);
         return OptionalInt.of(currentMin);
     }
 
     @Override
     public int findSum(CustomArray array) throws CustomArrayException {
-        LOGGER.info("find sum of elements");
         if (array == null || array.getElements() == null) {
+            LOGGER.error("CustomArray is null or field elements is null");
             throw new CustomArrayException("CustomArray is null or field elements is null");
         }
         int[] elements = array.getElements();
+        int sum = 0;
         if (elements.length == 0) {
-            return 0;
+            LOGGER.info("Sum = " + sum + ". " + array);
+            return sum;
         }
-        int sum = elements[0];
+        sum = elements[0];
         for (int i = 1; i < elements.length; i++) {
-            if (Integer.MAX_VALUE - sum >= Math.abs(elements[i])) {
+            if ((elements[i] > 0) ? Integer.MAX_VALUE - elements[i] > sum : Integer.MIN_VALUE - elements[i] < sum) {
                 sum += elements[i];
             } else {
                 LOGGER.error("sum value is bigger than Integer.MAX_VALUE");
                 throw new CustomArrayException("sum value is bigger than Integer.MAX_VALUE");
             }
         }
+        LOGGER.info("Sum = " + sum + ". " + array);
         return sum;
     }
 
     @Override
     public OptionalDouble findAverage(CustomArray array) throws CustomArrayException {
-        LOGGER.info("find average");
         if (array == null || array.getElements() == null) {
+            LOGGER.error("CustomArray is null or field elements is null");
             throw new CustomArrayException("CustomArray is null or field elements is null");
         }
         int[] elements = array.getElements();
         if (elements.length == 0) {
+            LOGGER.info("Average not found. " + array);
             return OptionalDouble.empty();
         }
         int sumOfElements = findSum(array);
         double average = (double) sumOfElements / elements.length;
+        LOGGER.info("Average = " + average + ". " + array);
         return OptionalDouble.of(average);
     }
 
     @Override
     public int findNumberOfPositive(CustomArray array) throws CustomArrayException {
-        LOGGER.info("find number of positive elements");
         if (array == null || array.getElements() == null) {
+            LOGGER.error("CustomArray is null or field elements is null");
             throw new CustomArrayException("CustomArray is null or field elements is null");
         }
         int[] elements = array.getElements();
@@ -102,13 +110,14 @@ public class ArrayFindServiceImpl implements ArrayFindService {
                 numberOfPositive++;
             }
         }
+        LOGGER.info("Number of positive = " + numberOfPositive + ". " + array);
         return numberOfPositive;
     }
 
     @Override
     public int findNumberOfNegative(CustomArray array) throws CustomArrayException {
-        LOGGER.info("find number of negative elements");
         if (array == null || array.getElements() == null) {
+            LOGGER.error("CustomArray is null or field elements is null");
             throw new CustomArrayException("CustomArray is null or field elements is null");
         }
         int[] elements = array.getElements();
@@ -118,73 +127,80 @@ public class ArrayFindServiceImpl implements ArrayFindService {
                 numberOfNegative++;
             }
         }
+        LOGGER.info("Number of negative = " + numberOfNegative + ". " + array);
         return numberOfNegative;
     }
 
     @Override
     public OptionalInt findMaxStream(CustomArray array) throws CustomArrayException {
-        LOGGER.info("find max element using stream");
         if (array == null || array.getElements() == null) {
+            LOGGER.error("CustomArray is null or field elements is null");
             throw new CustomArrayException("CustomArray is null or field elements is null");
         }
         int[] elements = array.getElements();
-        IntStream stream = Arrays.stream(elements);
-        return stream.max();
+        OptionalInt max = Arrays.stream(elements).max();
+        LOGGER.info("Max = " + max + ". " + array);
+        return max;
     }
 
     @Override
     public OptionalInt findMinStream(CustomArray array) throws CustomArrayException {
-        LOGGER.info("find min element using stream");
         if (array == null || array.getElements() == null) {
+            LOGGER.error("CustomArray is null or field elements is null");
             throw new CustomArrayException("CustomArray is null or field elements is null");
         }
         int[] elements = array.getElements();
-        IntStream stream = Arrays.stream(elements);
-        return stream.min();
+        OptionalInt min = Arrays.stream(elements).min();
+        LOGGER.info("Min = " + min + ". " + array);
+        return min;
     }
 
     @Override
     public int findSumStream(CustomArray array) throws CustomArrayException {
-        LOGGER.info("find sum of elements using stream");
         if (array == null || array.getElements() == null) {
+            LOGGER.error("CustomArray is null or field elements is null");
             throw new CustomArrayException("CustomArray is null or field elements is null");
         }
         int[] elements = array.getElements();
-        IntStream stream = Arrays.stream(elements);
-        return stream.sum();
+        int sum = Arrays.stream(elements).sum();
+        LOGGER.info("Sum = " + sum + ". " + array);
+        return sum;
     }
 
     @Override
     public OptionalDouble findAverageStream(CustomArray array) throws CustomArrayException {
-        LOGGER.info("find average using stream");
         if (array == null || array.getElements() == null) {
+            LOGGER.error("CustomArray is null or field elements is null");
             throw new CustomArrayException("CustomArray is null or field elements is null");
         }
         int[] elements = array.getElements();
-        IntStream stream = Arrays.stream(elements);
-        return stream.average();
+        OptionalDouble average = Arrays.stream(elements).average();
+        LOGGER.info("Average = " + average + ". " + array);
+        return average;
     }
 
     @Override
     public int findNumberOfPositiveStream(CustomArray array) throws CustomArrayException {
-        LOGGER.info("find number of positive using stream");
         if (array == null || array.getElements() == null) {
+            LOGGER.error("CustomArray is null or field elements is null");
             throw new CustomArrayException("CustomArray is null or field elements is null");
         }
         int[] elements = array.getElements();
-        IntStream stream = Arrays.stream(elements);
-        return (int) stream.filter((x) -> x > 0).count();
+        int numberOfPositive = (int) Arrays.stream(elements).filter((x) -> x > 0).count();
+        LOGGER.info("Number of positive = " + numberOfPositive + ". " + array);
+        return numberOfPositive;
     }
 
     @Override
     public int findNumberOfNegativeStream(CustomArray array) throws CustomArrayException {
-        LOGGER.info("find number of negative using stream");
         if (array == null || array.getElements() == null) {
+            LOGGER.error("CustomArray is null or field elements is null");
             throw new CustomArrayException("CustomArray is null or field elements is null");
         }
         int[] elements = array.getElements();
-        IntStream stream = Arrays.stream(elements);
-        return (int) stream.filter((x) -> x < 0).count();
+        int numberOfNegative = (int) Arrays.stream(elements).filter((x) -> x < 0).count();
+        LOGGER.info("Number of negative = " + numberOfNegative + ". " + array);
+        return numberOfNegative;
     }
 
 }

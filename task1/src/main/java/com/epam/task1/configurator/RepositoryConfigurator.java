@@ -17,21 +17,24 @@ import java.util.List;
 
 public class RepositoryConfigurator {
     private static final Logger LOGGER = LogManager.getLogger();
-    public RepositoryConfigurator(){
+
+    public RepositoryConfigurator() {
     }
-    public Repository configure(String fileName){
+
+    public Repository configure(String fileName) {
         ArrayLineReader reader = new ArrayLineReaderImpl();
         Repository repository = RepositoryImpl.getInstance();
         try {
             List<String> lines = reader.readAllArrayLines(fileName);
             ArrayParser parser = new ArrayParserImpl();
-            List<int[]> arrays =  parser.parseAll(lines);
+            List<int[]> arrays = parser.parseAll(lines);
             CustomArrayCreator creator = new CustomArrayCreatorImpl();
             List<CustomArray> customArrays = creator.createCustomArrays(arrays);
             repository.addAll(customArrays);
-        } catch(CustomArrayException exception){
-            LOGGER.error("Repository not configured", exception);
+        } catch (CustomArrayException exception) {
+            LOGGER.error("Repository configuration exception", exception);
         }
+        LOGGER.info("Repository configured. " + repository);
         return repository;
     }
 }

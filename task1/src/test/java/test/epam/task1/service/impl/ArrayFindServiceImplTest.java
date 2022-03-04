@@ -12,7 +12,7 @@ import java.util.OptionalInt;
 import static org.testng.Assert.*;
 
 public class ArrayFindServiceImplTest {
-    ArrayFindServiceImpl findService = new ArrayFindServiceImpl();
+    public static final ArrayFindServiceImpl FIND_SERVICE = new ArrayFindServiceImpl();
 
     @DataProvider(name = "data_for_findMax")
     public Object[][] createDataForFindMax() {
@@ -240,7 +240,7 @@ public class ArrayFindServiceImplTest {
 
     @Test(dataProvider = "data_for_findMax")
     public void testFindMax(CustomArray array, int expected) throws CustomArrayException {
-        OptionalInt actualOptional = findService.findMax(array);
+        OptionalInt actualOptional = FIND_SERVICE.findMax(array);
         if (actualOptional.isEmpty()) {
             fail("Optional is empty, expected=" + expected);
         }
@@ -250,7 +250,7 @@ public class ArrayFindServiceImplTest {
 
     @Test(dataProvider = "data_for_findMin")
     public void testFindMin(CustomArray array, int expected) throws CustomArrayException {
-        OptionalInt actualOptional = findService.findMin(array);
+        OptionalInt actualOptional = FIND_SERVICE.findMin(array);
         if (actualOptional.isEmpty()) {
             fail("OptionalInt is empty, expected=" + expected);
         }
@@ -260,25 +260,25 @@ public class ArrayFindServiceImplTest {
 
     @Test(dataProvider = "data_for_findSum")
     public void testFindSum(CustomArray array, int expected) throws CustomArrayException {
-        int actual = findService.findSum(array);
+        int actual = FIND_SERVICE.findSum(array);
         assertEquals(actual, expected);
     }
 
     @Test(dataProvider = "data_for_findNumPositive")
     public void testFindNumberOfPositive(CustomArray array, int expected) throws CustomArrayException {
-        int actual = findService.findNumberOfPositive(array);
+        int actual = FIND_SERVICE.findNumberOfPositive(array);
         assertEquals(actual, expected);
     }
 
     @Test(dataProvider = "data_for_findNumNegative")
     public void testFindNumberOfNegative(CustomArray array, int expected) throws CustomArrayException {
-        int actual = findService.findNumberOfNegative(array);
+        int actual = FIND_SERVICE.findNumberOfNegative(array);
         assertEquals(actual, expected);
     }
 
     @Test(dataProvider = "data_for_findAverage")
     public void testFindAverage(CustomArray array, double expected) throws CustomArrayException {
-        OptionalDouble actualOptional = findService.findAverage(array);
+        OptionalDouble actualOptional = FIND_SERVICE.findAverage(array);
         if (actualOptional.isEmpty()) {
             fail("OptionalDouble is empty, expected=" + expected);
         }
@@ -291,7 +291,7 @@ public class ArrayFindServiceImplTest {
         int[] intArray = new int[]{Integer.MAX_VALUE, 1};
         CustomArray array = new CustomArray(intArray);
         try {
-            findService.findSum(array);
+            FIND_SERVICE.findSum(array);
             fail("Test for findSum " + array
                     + " should have thrown a CustomArrayException");
         } catch (CustomArrayException exception) {
@@ -306,7 +306,7 @@ public class ArrayFindServiceImplTest {
         int[] intArray = new int[]{Integer.MAX_VALUE, 1};
         CustomArray array = new CustomArray(intArray);
         try {
-            findService.findAverage(array);
+            FIND_SERVICE.findAverage(array);
             fail("Test for findAverage " + array
                     + " should have thrown a CustomArrayException");
         } catch (CustomArrayException exception) {
@@ -318,85 +318,85 @@ public class ArrayFindServiceImplTest {
 
     @Test
     public void testFindMaxForEmptyArray() throws CustomArrayException {
-        OptionalInt actual = findService.findMax(new CustomArray());
+        OptionalInt actual = FIND_SERVICE.findMax(new CustomArray());
         assertTrue(actual.isEmpty());
     }
 
     @Test
     public void testFindMinForEmptyArray() throws CustomArrayException {
-        OptionalInt actual = findService.findMin(new CustomArray());
+        OptionalInt actual = FIND_SERVICE.findMin(new CustomArray());
         assertTrue(actual.isEmpty());
     }
 
     @Test
     public void testFindAverageForEmptyArray() throws CustomArrayException {
-        OptionalDouble actual = findService.findAverage(new CustomArray());
+        OptionalDouble actual = FIND_SERVICE.findAverage(new CustomArray());
         assertTrue(actual.isEmpty());
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testFindMaxException() throws CustomArrayException {
-        findService.findMax(new CustomArray((int[]) null));
+        FIND_SERVICE.findMax(new CustomArray((int[]) null));
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testFindMinException() throws CustomArrayException {
-        findService.findMin(new CustomArray((int[]) null));
+        FIND_SERVICE.findMin(new CustomArray((int[]) null));
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testFindSumException() throws CustomArrayException {
-        findService.findSum(new CustomArray((int[]) null));
+        FIND_SERVICE.findSum(new CustomArray((int[]) null));
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testFindNumberOfPositiveException() throws CustomArrayException {
-        findService.findNumberOfPositive(new CustomArray((int[]) null));
+        FIND_SERVICE.findNumberOfPositive(new CustomArray((int[]) null));
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testFindNumberOfNegativeException() throws CustomArrayException {
-        findService.findNumberOfNegative(new CustomArray((int[]) null));
+        FIND_SERVICE.findNumberOfNegative(new CustomArray((int[]) null));
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testFindAverageException() throws CustomArrayException {
-        findService.findAverage(new CustomArray((int[]) null));
+        FIND_SERVICE.findAverage(new CustomArray((int[]) null));
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testFindMaxForNull() throws CustomArrayException {
-        findService.findMax(null);
+        FIND_SERVICE.findMax(null);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testFindMinForNull() throws CustomArrayException {
-        findService.findMin(null);
+        FIND_SERVICE.findMin(null);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testFindSumForNull() throws CustomArrayException {
-        findService.findSum(null);
+        FIND_SERVICE.findSum(null);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testFindNumberOfPositiveForNull() throws CustomArrayException {
-        findService.findNumberOfPositive(null);
+        FIND_SERVICE.findNumberOfPositive(null);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testFindNumberOfNegativeForNull() throws CustomArrayException {
-        findService.findNumberOfNegative(null);
+        FIND_SERVICE.findNumberOfNegative(null);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testFindAverageNull() throws CustomArrayException {
-        findService.findAverage(null);
+        FIND_SERVICE.findAverage(null);
     }
 
     @Test(dataProvider = "data_for_findMaxStream")
     public void testFindMaxStream(CustomArray array, int expected) throws CustomArrayException {
-        OptionalInt actualOptional = findService.findMaxStream(array);
+        OptionalInt actualOptional = FIND_SERVICE.findMaxStream(array);
         if (actualOptional.isEmpty()) {
             fail("OptionalInt is empty, expected=" + expected);
         }
@@ -406,7 +406,7 @@ public class ArrayFindServiceImplTest {
 
     @Test(dataProvider = "data_for_findMinStream")
     public void testFindMinStream(CustomArray array, int expected) throws CustomArrayException {
-        OptionalInt actualOptional = findService.findMinStream(array);
+        OptionalInt actualOptional = FIND_SERVICE.findMinStream(array);
         if (actualOptional.isEmpty()) {
             fail("OptionalInt is empty, expected=" + expected);
         }
@@ -416,25 +416,25 @@ public class ArrayFindServiceImplTest {
 
     @Test(dataProvider = "data_for_findSumStream")
     public void testFindSumOfElementsStream(CustomArray array, int expected) throws CustomArrayException {
-        int actual = findService.findSumStream(array);
+        int actual = FIND_SERVICE.findSumStream(array);
         assertEquals(actual, expected);
     }
 
     @Test(dataProvider = "data_for_findNumPositiveStream")
     public void testFindNumberOfPositiveStream(CustomArray array, int expected) throws CustomArrayException {
-        int actual = findService.findNumberOfPositiveStream(array);
+        int actual = FIND_SERVICE.findNumberOfPositiveStream(array);
         assertEquals(actual, expected);
     }
 
     @Test(dataProvider = "data_for_findNumNegativeStream")
     public void testFindNumberOfNegativeStream(CustomArray array, int expected) throws CustomArrayException {
-        int actual = findService.findNumberOfNegativeStream(array);
+        int actual = FIND_SERVICE.findNumberOfNegativeStream(array);
         assertEquals(actual, expected);
     }
 
     @Test(dataProvider = "data_for_findAverageStream")
     public void testFindAverageStream(CustomArray array, double expected) throws CustomArrayException {
-        OptionalDouble actualOptional = findService.findAverageStream(array);
+        OptionalDouble actualOptional = FIND_SERVICE.findAverageStream(array);
         if (actualOptional.isEmpty()) {
             fail("OptionalDouble is empty, expected=" + expected);
         }
@@ -444,67 +444,67 @@ public class ArrayFindServiceImplTest {
 
     @Test
     public void testFindAverageStreamForEmptyArray() throws CustomArrayException {
-        OptionalDouble actual = findService.findAverageStream(new CustomArray());
+        OptionalDouble actual = FIND_SERVICE.findAverageStream(new CustomArray());
         assertSame(OptionalDouble.empty(), actual);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testFindMaxElementStreamException() throws CustomArrayException {
-        findService.findMaxStream(new CustomArray((int[]) null));
+        FIND_SERVICE.findMaxStream(new CustomArray((int[]) null));
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testFindMinElementStreamException() throws CustomArrayException {
-        findService.findMinStream(new CustomArray((int[]) null));
+        FIND_SERVICE.findMinStream(new CustomArray((int[]) null));
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testFindSumStreamException() throws CustomArrayException {
-        findService.findSumStream(new CustomArray((int[]) null));
+        FIND_SERVICE.findSumStream(new CustomArray((int[]) null));
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testFindNumberOfPositiveStreamException() throws CustomArrayException {
-        findService.findNumberOfPositiveStream(new CustomArray((int[]) null));
+        FIND_SERVICE.findNumberOfPositiveStream(new CustomArray((int[]) null));
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testFindNumberOfNegativeStreamException() throws CustomArrayException {
-        findService.findNumberOfNegativeStream(new CustomArray((int[]) null));
+        FIND_SERVICE.findNumberOfNegativeStream(new CustomArray((int[]) null));
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testFindAverageStreamException() throws CustomArrayException {
-        findService.findAverageStream(new CustomArray((int[]) null));
+        FIND_SERVICE.findAverageStream(new CustomArray((int[]) null));
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testFindMaxElementStreamNull() throws CustomArrayException {
-        findService.findMaxStream(null);
+        FIND_SERVICE.findMaxStream(null);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testFindMinStreamForNull() throws CustomArrayException {
-        findService.findMinStream(null);
+        FIND_SERVICE.findMinStream(null);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testFindSumStreamForNull() throws CustomArrayException {
-        findService.findSumStream(null);
+        FIND_SERVICE.findSumStream(null);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testFindNumberOfPositiveStreamForNull() throws CustomArrayException {
-        findService.findNumberOfPositiveStream(null);
+        FIND_SERVICE.findNumberOfPositiveStream(null);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testFindNumberOfNegativeStreamNull() throws CustomArrayException {
-        findService.findNumberOfNegativeStream(null);
+        FIND_SERVICE.findNumberOfNegativeStream(null);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testFindAverageStreamNull() throws CustomArrayException {
-        findService.findAverageStream(null);
+        FIND_SERVICE.findAverageStream(null);
     }
 }

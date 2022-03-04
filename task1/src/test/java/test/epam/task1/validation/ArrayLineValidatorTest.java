@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 public class ArrayLineValidatorTest {
-    ArrayLineValidator validator = ArrayLineValidator.getInstance();
+    public static final ArrayLineValidator VALIDATOR = ArrayLineValidator.getInstance();
 
     @DataProvider(name = "correct_data")
     public Object[][] createCorrectData() {
@@ -35,17 +35,17 @@ public class ArrayLineValidatorTest {
 
     @Test(dataProvider = "correct_data")
     public void testIsArrayLineCorrectForCorrectData(String line) {
-        assertTrue(validator.isArrayLineCorrect(line));
+        assertTrue(VALIDATOR.isArrayLineCorrect(line));
     }
 
     @Test(dataProvider = "incorrect_data")
     public void testIsArrayLineCorrectForIncorrectData(String line) {
-        assertFalse(validator.isArrayLineCorrect(line));
+        assertFalse(VALIDATOR.isArrayLineCorrect(line));
     }
 
     @Test
     public void testIsArrayLineCorrectNull() {
-        boolean actual = validator.isArrayLineCorrect(null);
+        boolean actual = VALIDATOR.isArrayLineCorrect(null);
         assertFalse(actual);
     }
 }

@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 public class ArraySortServiceImplTest {
-    ArraySortServiceImpl sortService = new ArraySortServiceImpl();
+    public static final ArraySortServiceImpl SORT_SERVICE = new ArraySortServiceImpl();
 
     @DataProvider(name = "arrays_data")
     public Object[][] createData() {
@@ -40,68 +40,68 @@ public class ArraySortServiceImplTest {
     @Test(dataProvider = "arrays_data")
     public void testBubbleSort(CustomArray actual, CustomArray expected) throws CustomArrayException {
         CustomArray actualClone = new CustomArray(actual.getElements());
-        sortService.bubbleSort(actualClone);
+        SORT_SERVICE.bubbleSort(actualClone);
         assertEquals(actualClone, expected);
     }
 
     @Test(dataProvider = "arrays_data")
     public void testInsertionSort(CustomArray actual, CustomArray expected) throws CustomArrayException {
         CustomArray actualClone = new CustomArray(actual.getElements());
-        sortService.insertionSort(actualClone);
+        SORT_SERVICE.insertionSort(actualClone);
         assertEquals(actualClone, expected);
     }
 
     @Test(dataProvider = "arrays_data")
     public void testShellSort(CustomArray actual, CustomArray expected) throws CustomArrayException {
         CustomArray actualClone = new CustomArray(actual.getElements());
-        sortService.shellSort(actualClone);
+        SORT_SERVICE.shellSort(actualClone);
         assertEquals(actualClone, expected);
     }
 
     @Test(dataProvider = "arrays_data")
     public void testStreamSort(CustomArray actual, CustomArray expected) throws CustomArrayException {
         CustomArray actualClone = new CustomArray(actual.getElements());
-        sortService.streamSort(actualClone);
+        SORT_SERVICE.streamSort(actualClone);
         assertEquals(actualClone, expected);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testBubbleSortException() throws CustomArrayException {
-        sortService.bubbleSort(new CustomArray((int[]) null));
+        SORT_SERVICE.bubbleSort(new CustomArray((int[]) null));
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testBubbleSortNull() throws CustomArrayException {
-        sortService.bubbleSort(null);
+        SORT_SERVICE.bubbleSort(null);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testInsertionSortException() throws CustomArrayException {
-        sortService.insertionSort(new CustomArray((int[]) null));
+        SORT_SERVICE.insertionSort(new CustomArray((int[]) null));
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testInsertionSortNull() throws CustomArrayException {
-        sortService.insertionSort(null);
+        SORT_SERVICE.insertionSort(null);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testShellSortException() throws CustomArrayException {
-        sortService.shellSort(new CustomArray((int[]) null));
+        SORT_SERVICE.shellSort(new CustomArray((int[]) null));
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testShellSortNull() throws CustomArrayException {
-        sortService.shellSort(null);
+        SORT_SERVICE.shellSort(null);
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testStreamSortException() throws CustomArrayException {
-        sortService.streamSort(new CustomArray((int[]) null));
+        SORT_SERVICE.streamSort(new CustomArray((int[]) null));
     }
 
     @Test(expectedExceptions = CustomArrayException.class)
     public void testStreamSortNull() throws CustomArrayException {
-        sortService.streamSort(null);
+        SORT_SERVICE.streamSort(null);
     }
 }
