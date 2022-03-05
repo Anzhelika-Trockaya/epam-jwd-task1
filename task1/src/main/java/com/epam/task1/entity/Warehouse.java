@@ -3,6 +3,7 @@ package com.epam.task1.entity;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class Warehouse implements Serializable {
     private static final long serialVersionUID = -5897708762346652427L;
@@ -24,8 +25,20 @@ public class Warehouse implements Serializable {
         return params.containsKey(id);
     }
 
+    public Map<Integer, CustomArrayParameters> getParams() {
+        Map<Integer, CustomArrayParameters> paramsClone = new HashMap<>();
+        for (Integer id : params.keySet()) {
+            paramsClone.put(id, params.get(id));
+        }
+        return paramsClone;
+    }
+
+    public Set<Integer> getIdSet() {
+        return params.keySet();
+    }
+
     public CustomArrayParameters get(Integer id) {
-        return params.get(id);
+        return params.get(id).clone();
     }
 
     public CustomArrayParameters put(Integer id, CustomArrayParameters value) {

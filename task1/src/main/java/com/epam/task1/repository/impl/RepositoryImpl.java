@@ -27,6 +27,11 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
+    public int size(){
+        return CUSTOM_ARRAYS.size();
+    }
+
+    @Override
     public boolean add(CustomArray customArray) {
         return CUSTOM_ARRAYS.add(customArray);
     }

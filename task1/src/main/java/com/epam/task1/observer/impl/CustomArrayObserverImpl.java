@@ -25,7 +25,7 @@ public class CustomArrayObserverImpl implements com.epam.task1.observer.CustomAr
             OptionalInt min = arrayFindService.findMin(array);
             OptionalInt max = arrayFindService.findMax(array);
             OptionalDouble average = arrayFindService.findAverage(array);
-            CustomArrayParameters params = new CustomArrayParameters(max, min, sum, average);//fixme: average 2?
+            CustomArrayParameters params = new CustomArrayParameters(max, min, sum, average);
             int id = array.getId();
             Warehouse warehouse = Warehouse.getInstance();
             warehouse.put(id, params);

@@ -84,8 +84,13 @@ public class CustomArrayParameters implements Serializable {
                 append("max=").append(max).
                 append(", min=").append(min).
                 append(", sum=").append(sum).
-                append(", average=").append(min).
+                append(", average=").append(average).
                 append('}');
         return stringBuilder.toString();
+    }
+
+    @Override
+    public CustomArrayParameters clone() {
+        return new CustomArrayParameters(max, min, sum, average);
     }
 }

@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public interface Repository {
+    int size();
+
     boolean add(CustomArray customArray);
 
     boolean addAll(Collection<CustomArray> collection);
