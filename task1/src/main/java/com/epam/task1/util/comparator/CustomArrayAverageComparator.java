@@ -1,4 +1,4 @@
-package com.epam.task1.comparator;
+package com.epam.task1.util.comparator;
 
 import com.epam.task1.entity.CustomArray;
 import com.epam.task1.exception.CustomArrayException;
@@ -15,8 +15,8 @@ public class CustomArrayAverageComparator implements Comparator<CustomArray> {
 
     @Override
     public int compare(CustomArray o1, CustomArray o2) {
-            double average1 = calculateAverage(o1);
-            double average2 = calculateAverage(o2);
+        double average1 = calculateAverage(o1);
+        double average2 = calculateAverage(o2);
         return Double.compare(average1, average2);
     }
 

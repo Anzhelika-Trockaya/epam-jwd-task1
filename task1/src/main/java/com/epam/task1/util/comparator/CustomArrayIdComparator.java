@@ -1,4 +1,4 @@
-package com.epam.task1.comparator;
+package com.epam.task1.util.comparator;
 
 import com.epam.task1.entity.CustomArray;
 

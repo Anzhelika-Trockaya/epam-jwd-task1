@@ -11,13 +11,15 @@ public class CustomArray extends CustomArrayObservableImpl implements Serializab
     private final int id;
     private int[] elements;
 
-    public CustomArray() {
+    {
         id = IdGeneratorUtil.generate();
+    }
+
+    public CustomArray() {
         elements = new int[0];
     }
 
     public CustomArray(int... elements) {
-        id = IdGeneratorUtil.generate();
         this.elements = elements != null ? elements.clone() : null;
     }
 

@@ -1,32 +1,31 @@
-package com.epam.task1.comparator;
+package com.epam.task1.repository.specification.impl;
 
 import com.epam.task1.entity.CustomArray;
 import com.epam.task1.exception.CustomArrayException;
+import com.epam.task1.repository.specification.Specification;
 import com.epam.task1.service.ArrayFindService;
 import com.epam.task1.service.impl.ArrayFindServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Comparator;
-
-public class CustomArraySumComparator implements Comparator<CustomArray> {
+public class SumEqualsSpecification implements Specification {
     private static final Logger LOGGER = LogManager.getLogger();
+    private final int value;
 
-    @Override
-    public int compare(CustomArray o1, CustomArray o2) {
-        int sum1 = calculateSum(o1);
-        int sum2 = calculateSum(o2);
-        return Integer.compare(sum1, sum2);
+    public SumEqualsSpecification(int value) {
+        this.value = value;
     }
 
-    private int calculateSum(CustomArray array) {
+    @Override
+    public boolean specify(CustomArray customArray) {
+        boolean result = false;
         ArrayFindService findService = new ArrayFindServiceImpl();
-        int sum = Integer.MIN_VALUE;
         try {
-            sum = findService.findSum(array);
+            int sum = findService.findSum(customArray);
+            result = (sum == value);
         } catch (CustomArrayException customArrayException) {
             LOGGER.warn("Sum not calculated", customArrayException);
         }
-        return sum;
+        return result;
     }
 }
